@@ -1,0 +1,35 @@
+@using ViewModels.Users;
+@model UpdateViewModels;
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="row mt-5 mb-5">
+    <div class="col-md-3">
+        <a class="btn btn-sm btn-success" href="/users/create">Додати</a>
+        <a class="btn btn-sm btn-primary" href="/users/index">На головну</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h1>Користувач: @Model.user.name</h1>
+
+        <form action="/users/update" method="post">
+            <input type="hidden" name="id" value="@Model.user.id">
+
+            <div class="mb-3">
+                <label for="name" class="form-label">Ім'я</label>
+                <input type="text" class="form-control" id="name" name="name" value="@Model.user.name">
+            </div>
+
+            <div class="mb-3">
+                <label for="surname" class="form-label">Прізвище</label>
+                <input type="text" class="form-control" id="surname" name="surname" value="@Model.user.surname">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Оновити</button>
+        </form>
+    </div>
+</div>

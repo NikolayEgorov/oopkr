@@ -1,0 +1,97 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = oopkr
+build_property.RootNamespace = oopkr
+build_property.ProjectDir = /home/mykola/dotNetProjects/oopkr/
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/mykola/dotNetProjects/oopkr
+build_property._RazorSourceGeneratorDebug = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Items/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSXRlbXMvY3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Items/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSXRlbXMvaW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Items/update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSXRlbXMvdXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Orders/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL2NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Orders/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL2luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Orders/update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvT3JkZXJzL3VwZGF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Products/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdHMvY3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Products/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdHMvaW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Products/update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdHMvdXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Shared/_Base.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19CYXNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Shared/_LeftSidebar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MZWZ0U2lkZWJhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Shared/_RightSidebar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19SaWdodFNpZGViYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Shared/_TopNavbar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Ub3BOYXZiYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Users/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlcnMvY3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Users/index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlcnMvaW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/Users/update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlcnMvdXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/mykola/dotNetProjects/oopkr/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

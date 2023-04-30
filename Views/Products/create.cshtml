@@ -1,0 +1,24 @@
+@using Models;
+@using ViewModels.Products;
+@model UpdateViewModels;
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h1>Новий інгрідієнт</h1>
+
+        <form action="/products/update" method="post">
+            <input type="hidden" name="id" value="0">
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Назва</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+
+            <button type="submit" class="btn btn-success">Створити</button>
+        </form>
+    </div>
+</div>

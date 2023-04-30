@@ -1,0 +1,37 @@
+@using ViewModels.Products;
+@model IndexViewModels;
+
+@{
+    Layout = "_Layout";
+    ViewData["layoutContainerClass"] = "products-index";
+}
+
+<div class="row mt-5 mb-5">
+    <div class="col-md-3">
+        <a class="btn btn-sm btn-success" href="/products/create">Новий</a>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="id">#</th>
+            <th class="title">Назва</th>
+            <th class="actions"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(Models.Product product in Model.products) {
+            <tr>
+                <td>@product.id</td>
+                <td>@product.title</td>
+                <td>
+                    <a class="btn btn-sm btn-primary" href="/products/update/@product.id">Редагувати</a>
+                    <a class="btn btn-sm btn-danger" href="javascript:void(0)" onclick="document.getElementById('delete-form-@product.id').submit()">Видалити</a>
+                    <form id="delete-form-@product.id" method="post" action="/products/delete/@product.id"></form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

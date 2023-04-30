@@ -1,0 +1,63 @@
+@using Models;
+@using ViewModels.Orders;
+@model UpdateViewModels;
+
+@{
+    Layout = "_Layout";
+}
+
+@section CustomStyles {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+<div class="row mt-5 mb-5">
+    <div class="col-md-3">
+        <a class="btn btn-sm btn-success" href="/orders/create">Додати</a>
+        <a class="btn btn-sm btn-primary" href="/orders/index">На головну</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h1>Замовлення: @Model.order.id</h1>
+
+        <form action="/orders/update" method="post">
+            <input type="hidden" name="id" value="@Model.order.id">
+
+            <div class="mb-3">
+                <label for="itemids" class="form-label">Піци</label>
+                <select id="itemids" class="form-select" name="itemids" multiple>
+                    @foreach(Item item in @Model.items){
+                        @if(Model.order.items.Contains(item)){
+                            <option value="@item.id" selected>@item.title</option>
+                        } else { <option value="@item.id">@item.title</option> }
+                    }
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="userid" class="form-label">Клієнт</label>
+                <select id="userid" class="form-select" name="userid">
+                    @foreach(User user in @Model.users){
+                        @if(Model.order.user.id == user.id){
+                            <option value="@user.id" selected>@user.GetFullName()</option>    
+                        } else { <option value="@user.id">@user.GetFullName()</option> }
+                    }
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Оновити</button>
+        </form>
+    </div>
+</div>
+
+@section CustomScripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+            $("#itemids").select2();
+        });
+    </script>
+}

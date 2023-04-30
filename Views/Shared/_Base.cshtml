@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
+        <title>@ViewData["Title"]</title>
+
+        <!-- Favicon-->
+        <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+        <!-- Plugins Core Css -->
+        <link href="assets/css/app.min.css" rel="stylesheet">
+
+        <!-- Custom Css -->
+        <link href="assets/css/style.css" rel="stylesheet" />
+        <link href="assets/css/styles/theme-white.css" rel="stylesheet" />
+
+        @RenderSection("CustomStyles", required: false)
+    </head>
+
+    <body class="light">
+        @RenderSection("Preloader", required: false)
+
+        <!-- Overlay For Sidebars -->
+        <div class="overlay"></div>
+        <!-- #END# Overlay For Sidebars -->
+
+        @RenderSection("TopNavbar", required: false)
+
+        <div>
+            @RenderSection("LeftSidebar", required: false)
+            @RenderSection("RightSidebar", required: false)
+        </div>
+
+        <section class="content">
+            <div class="container-fluid">
+                @RenderSection("Breadcrumb")
+                @RenderSection("Body")
+            </div>
+        </section>
+
+        <!-- Plugins Js -->
+        <script src="assets/js/app.min.js"></script>
+        <script src="assets/js/chart.min.js"></script>
+
+        <!-- Custom Js -->
+        <script src="assets/js/admin.js"></script>
+        <script src="assets/js/pages/index.js"></script>
+        <script src="assets/js/pages/charts/jquery-knob.js"></script>
+        <script src="assets/js/pages/sparkline/sparkline-data.js"></script>
+        <script src="assets/js/pages/medias/carousel.js"></script>
+        @RenderSection("CustomScripts", required: false)
+    </body>
+</html>

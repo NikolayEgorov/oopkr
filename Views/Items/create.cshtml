@@ -1,0 +1,57 @@
+@using Models;
+@using ViewModels.Items;
+@model UpdateViewModels;
+
+@{
+    Layout = "_Layout";
+}
+
+@section CustomStyles {
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <h1>Нова піцца</h1>
+
+        <form action="/items/update" method="post">
+            <input type="hidden" name="id" value="0">
+
+            <div class="mb-3">
+                <label for="title" class="form-label">Назва</label>
+                <input type="text" class="form-control" id="title" name="title">
+            </div>
+
+            <div class="mb-3">
+                <label for="surname" class="form-label">Вартість</label>
+                <input type="text" class="form-control" id="price" name="price">
+            </div>
+
+            <div class="mb-3">
+                <label for="products" class="form-label">Інгрідієнти</label>
+                <select class="form-select" id="products" name="products" multiple>
+                    @foreach(Product product in @Model.products){
+                        @if(Model.item.products.Contains(product)){
+                            <option value="@product.id" selected>@product.title</option>    
+                        } else {
+                            <option value="@product.id">@product.title</option>
+                        }
+                    }
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-success">Створити</button>
+        </form>
+    </div>
+</div>
+
+@section CustomScripts {
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $(document).ready(() => {
+            $("#products").select2();
+        });
+    </script>
+}

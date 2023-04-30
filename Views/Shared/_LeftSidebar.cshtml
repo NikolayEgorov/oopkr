@@ -1,0 +1,48 @@
+@{
+    Layout = "_TopNavbar";
+}
+
+@section CustomStyles { @RenderSection("CustomStyles", required: false) }
+
+@section LeftSidebar {
+<!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar">
+    <!-- Menu -->
+    <div class="menu">
+        <ul class="list">
+            <li class="sidebar-user-panel active">
+                <div class="user-panel">
+                    <div class=" image">
+                        <img src="assets/images/usrbig.jpg" class="img-circle user-img-circle"
+                            alt="User Image" />
+                    </div>
+                </div>
+                <div class="profile-usertitle">
+                    <div class="sidebar-userpic-name">Прізвище Ім'я</div>
+                    <div class="profile-usertitle-job">Роль</div>
+                </div>
+            </li>
+
+            <li>
+                <a href="/plants/index">
+                    <i class="far fa-calendar"></i>
+                    <span>Об'єкти</span>
+                </a>
+            </li>
+            <li>
+                <a href="/users/index">
+                    <i class="far fa-calendar"></i>
+                    <span>Оператори</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- #Menu -->
+</aside>
+<!-- #END# Left Sidebar -->
+}
+
+@section RightSidebar { @RenderSection("RightSidebar", required: false) }
+@section Breadcrumb { @RenderSection("Breadcrumb", required: false) }
+@section Body { @RenderSection("Body", required: false) }
+@section CustomScripts { @RenderSection("CustomScripts", required: false) }
