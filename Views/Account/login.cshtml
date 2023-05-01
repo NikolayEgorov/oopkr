@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<title>ООП КР | Авторизація</title>
+
+		<!-- Favicon-->
+		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+		<!-- Plugins Core Css -->
+		<link href="/assets/css/app.min.css" rel="stylesheet">
+		<!-- Custom Css -->
+		<link href="/assets/css/style.css" rel="stylesheet" />
+		<link href="/assets/css/pages/authentication.css" rel="stylesheet" />
+	</head>
+
+	<body>
+		<div class="limiter">
+			<div class="container-login100">
+				<div class="wrap-login100">
+					<form class="login100-form validate-form" action="/account/login" method="@HttpMethod.Post">
+						<span class="login100-form-title p-b-45">Авторизація</span>
+
+						<div class="wrap-input100 validate-input" data-validate="Вірний формат email: ex@abc.xyz">
+							<input class="input100" type="text" name="email">
+							<span class="focus-input100"></span>
+							<span class="label-input100">Email</span>
+						</div>
+
+						<div class="wrap-input100 validate-input" data-validate="Пароль не заповнено">
+							<input class="input100" type="password" name="password">
+							<span class="focus-input100"></span>
+							<span class="label-input100">Пароль</span>
+						</div>
+
+						<div class="container-login100-form-btn">
+							<button class="login100-form-btn">Увійти</button>
+						</div>
+					</form>
+
+					<div class="login100-more" style="background-image: url('/images/login.jpg');"></div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Plugins Js -->
+		<script src="/assets/js/app.min.js"></script>
+		<script src="/assets/js/pages/examples/pages.js"></script>
+	</body>
+</html>

@@ -1,13 +1,13 @@
-namespace ViewModels.Orders;
+// namespace ViewModels.Orders;
 
-using Models;
+// using Models;
 
-public class IndexViewModels
-{
-    public IEnumerable<Order> orders;
+// public class IndexViewModels
+// {
+//     public IEnumerable<Order> orders;
 
-    public IndexViewModels(IEnumerable<Order> orders)
-    {
-        this.orders = orders;
-    }
-}
+//     public IndexViewModels(IEnumerable<Order> orders)
+//     {
+//         this.orders = orders;
+//     }
+// }

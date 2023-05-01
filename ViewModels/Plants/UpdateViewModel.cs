@@ -4,12 +4,12 @@ using Models;
 
 public class UpdateViewModels
 {
-    public Item item;
-    public List<Product> products;
+    public Plant plant;
+    public List<Boller> bollers;
 
-    public UpdateViewModels(Item item, List<Product> products)
+    public UpdateViewModels(Plant plant, List<Boller> bollers)
     {
-        this.item = item;
-        this.products = products;
+        this.plant = plant;
+        this.bollers = bollers;
     }
 }

@@ -1,13 +1,13 @@
-namespace ViewModels.Products;
+// namespace ViewModels.Products;
 
-using Models;
+// using Models;
 
-public class IndexViewModels
-{
-    public IEnumerable<Product> products;
+// public class IndexViewModels
+// {
+//     public IEnumerable<Product> products;
 
-    public IndexViewModels(IEnumerable<Product> products)
-    {
-        this.products = products;
-    }
-}
+//     public IndexViewModels(IEnumerable<Product> products)
+//     {
+//         this.products = products;
+//     }
+// }

@@ -99,3 +99,5 @@
 /home/mykola/dotNetProjects/oopkr/obj/Debug/net7.0/oopkr.pdb
 /home/mykola/dotNetProjects/oopkr/obj/Debug/net7.0/oopkr.genruntimeconfig.cache
 /home/mykola/dotNetProjects/oopkr/obj/Debug/net7.0/ref/oopkr.dll
+/home/mykola/dotNetProjects/oopkr/bin/Debug/net7.0/package.json
+/home/mykola/dotNetProjects/oopkr/bin/Debug/net7.0/BCrypt.Net-Next.dll

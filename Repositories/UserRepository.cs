@@ -1,8 +1,8 @@
 namespace Repositories;
 
+using Dto;
 using Models;
 using Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 public class UserRepository : IUsers
 {
@@ -13,19 +13,32 @@ public class UserRepository : IUsers
         this.dbContext = dbContext;
     }
 
-    public User GetLast() => this.dbContext.User.OrderByDescending(u => u.id).First();
-    public User GetById(int id) => this.dbContext.User.Where(u => u.id == id).First();
-    public List<User> All => this.dbContext.User.ToList();
+    public Base GetLast() => this.dbContext.User.OrderByDescending(u => u.id).First();
+    public Base GetById(int id) => this.dbContext.User.Where(u => u.id == id).First();
 
-    public User SaveOne(User user)
+    public User? AuthenticateUser(UserDto model)
     {
-        User dbUser = null;
+        if(this.dbContext.User.Count() == 0) return null;
 
-        if(user.id > 0) dbUser = this.GetById(user.id);
+        User user = this.dbContext.User
+            .Where(u => u.email.Equals(model.email)).First();
+
+        return BCrypt.Net.BCrypt.Verify(model.password, user.password)
+            ? user : null;
+    }
+
+    public Base SaveOne(Base model)
+    {
+        User dbUser = null; User user = (User) model;
+
+        if(user.id > 0) dbUser = (User) this.GetById(user.id);
         else dbUser = new User();
 
         dbUser.name = user.name;
+        dbUser.email = user.email;
         dbUser.surname = user.surname;
+        dbUser.password = BCrypt.Net.BCrypt
+            .HashPassword(user.password);
         
         if(dbUser.id == 0) this.dbContext.Add(dbUser);
         this.dbContext.SaveChanges();
@@ -38,4 +51,6 @@ public class UserRepository : IUsers
         this.dbContext.User.Remove(new User{ id = id });
         return this.dbContext.SaveChanges() > 0;
     }
+
+    public List<User> All => this.dbContext.User.ToList();
 }
