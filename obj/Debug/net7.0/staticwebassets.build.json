@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RDQ/ik7L2vxudzASQwYiQ+dsDmZ4wRo2FpZl9hVc0+Y=",
+  "Hash": "Inq2nIXrBhISnORpeYD4D/KKBBiyPy1U6so4It2Aj8s=",
   "Source": "oopkr",
   "BasePath": "_content/oopkr",
   "Mode": "Default",
@@ -14363,6 +14363,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/home/mykola/dotNetProjects/oopkr/wwwroot/images/login.jpg",
+      "SourceId": "oopkr",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/mykola/dotNetProjects/oopkr/wwwroot/",
+      "BasePath": "_content/oopkr",
+      "RelativePath": "images/login.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/login.jpg"
     }
   ]
 }

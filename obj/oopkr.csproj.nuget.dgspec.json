@@ -10,11 +10,11 @@
         "projectUniqueName": "/home/mykola/dotNetProjects/oopkr/oopkr.csproj",
         "projectName": "oopkr",
         "projectPath": "/home/mykola/dotNetProjects/oopkr/oopkr.csproj",
-        "packagesPath": "/home/mykola/.nuget/packages/",
+        "packagesPath": "/root/.nuget/packages/",
         "outputPath": "/home/mykola/dotNetProjects/oopkr/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/mykola/.nuget/NuGet/NuGet.Config"
+          "/root/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
