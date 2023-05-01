@@ -27,6 +27,14 @@ public class UserRepository : IUsers
             ? user : null;
     }
 
+    public User PasswordHashing(User user)
+    {
+        user.password = BCrypt.Net.BCrypt
+            .HashPassword(user.password);
+
+        return user;
+    }
+
     public Base SaveOne(Base model)
     {
         User dbUser = null; User user = (User) model;
@@ -37,8 +45,7 @@ public class UserRepository : IUsers
         dbUser.name = user.name;
         dbUser.email = user.email;
         dbUser.surname = user.surname;
-        dbUser.password = BCrypt.Net.BCrypt
-            .HashPassword(user.password);
+        dbUser.password = user.password;
         
         if(dbUser.id == 0) this.dbContext.Add(dbUser);
         this.dbContext.SaveChanges();

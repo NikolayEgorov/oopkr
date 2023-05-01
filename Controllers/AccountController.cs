@@ -21,13 +21,23 @@ public class AccountController : Controller
     public IActionResult Login()
     {
         ClaimsPrincipal user = HttpContext.User;
-        Console.WriteLine(user.Identity.IsAuthenticated);
-
+    
         if(user.Identity.IsAuthenticated) {
             return RedirectToAction("Index", "Home");
         }
 
         return View();
+    }
+
+    [Authorize]
+    public IActionResult Register()
+    {
+        User user = new User();
+        user.email = HttpContext.Request.Query["email"];
+        user.password = HttpContext.Request.Query["password"];
+
+        this._iUsers.SaveOne(this._iUsers.PasswordHashing(user));
+        return RedirectToAction("Login", "Account");
     }
 
     [HttpPost]
