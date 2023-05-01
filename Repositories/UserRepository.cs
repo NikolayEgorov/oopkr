@@ -20,8 +20,8 @@ public class UserRepository : IUsers
     {
         if(this.dbContext.User.Count() == 0) return null;
 
-        User user = this.dbContext.User
-            .Where(u => u.email.Equals(model.email)).First();
+        User user = this.dbContext.User.Where(
+            u => u.email == model.email.ToLower()).First();
 
         return BCrypt.Net.BCrypt.Verify(model.password, user.password)
             ? user : null;
