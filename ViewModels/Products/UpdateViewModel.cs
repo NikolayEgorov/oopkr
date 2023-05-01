@@ -1,12 +1,12 @@
-namespace ViewModels.Products;
+// namespace ViewModels.Products;
 
-using Models;
+// using Models;
 
-public class UpdateViewModels {
-    public Product product;
+// public class UpdateViewModels {
+//     public Product product;
 
-    public UpdateViewModels(Product product)
-    {
-        this.product = product;
-    }
-}
+//     public UpdateViewModels(Product product)
+//     {
+//         this.product = product;
+//     }
+// }

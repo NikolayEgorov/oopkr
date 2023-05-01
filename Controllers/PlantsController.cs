@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 
 public class PlantsController : Controller
 {
-    // public PlantsController()
-    // {
-    // }
+    private readonly IPlants _iPlants;
+    public PlantsController(IPlants iPlants)
+    {
+        this._iPlants = iPlants;
+    }
 
     // [Route("/plants/index")]
     // public IActionResult index()
