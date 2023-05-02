@@ -32,7 +32,8 @@ namespace oopkr.Migrations
                     name = table.Column<string>(type: "TEXT", nullable: false),
                     surname = table.Column<string>(type: "TEXT", nullable: false),
                     email = table.Column<string>(type: "TEXT", nullable: false),
-                    password = table.Column<string>(type: "TEXT", nullable: false)
+                    password = table.Column<string>(type: "TEXT", nullable: false),
+                    status = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

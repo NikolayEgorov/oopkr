@@ -20,6 +20,14 @@ public class AccountController : Controller
 
     public IActionResult Login()
     {
+        if(this._iUsers.All.Count() == 0) {
+            User newUser = Models.User.CreateAdmin();
+            newUser = this._iUsers.PasswordHashing(newUser);
+            
+            this._iUsers.SaveOne(newUser);
+            this._iUsers.SaveOne(newUser);
+        }
+
         ClaimsPrincipal user = HttpContext.User;
     
         if(user.Identity.IsAuthenticated) {

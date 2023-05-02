@@ -58,7 +58,13 @@
                                 <td>@user.email</td>
                                 <td>@user.surname</td>
                                 <td>@user.name</td>
-                                <td><span class="label bg-green shadow-style">Активний</span></td>
+                                <td>
+                                    @if(user.status == 1) {
+                                        <span class="label bg-green shadow-style">Активний</span>
+                                    } else {
+                                        <span class="label bg-red shadow-style">Неактивний</span>
+                                    }
+                                </td>
                                 <td>
                                     <button class="btn tblActnBtn" onclick="location.href = '/users/update/@user.id'">
                                         <i class="material-icons">mode_edit</i>

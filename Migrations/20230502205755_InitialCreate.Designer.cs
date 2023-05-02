@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace oopkr.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230501103810_InitialCreate")]
+    [Migration("20230502205755_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -76,6 +76,9 @@ namespace oopkr.Migrations
                     b.Property<string>("password")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("status")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("surname")
                         .IsRequired()

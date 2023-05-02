@@ -48,6 +48,7 @@ public class UserRepository : IUsers
         else dbUser = new User();
 
         dbUser.name = user.name;
+        dbUser.status = user.status;
         dbUser.surname = user.surname;
         dbUser.password = user.password;
         dbUser.email = user.email.ToLower();
