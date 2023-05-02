@@ -68,8 +68,11 @@ public class AccountController : Controller
     }
 
     [Authorize]
-    public ActionResult<User> logout(UserDto request)
+    public async Task<IActionResult> logout()
     {
+        await HttpContext.SignOutAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme);
+            
         return RedirectToAction("Login", "Account");
     }
 }

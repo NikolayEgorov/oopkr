@@ -20,8 +20,13 @@ public class UserRepository : IUsers
     {
         if(this.dbContext.User.Count() == 0) return null;
 
-        User user = this.dbContext.User.Where(
-            u => u.email == model.email.ToLower()).First();
+        User user = null;
+        try {
+            user = this.dbContext.User.Where(
+                u => u.email == model.email.ToLower()).First();
+        } catch(InvalidOperationException e) {
+            return user;
+        }
 
         return BCrypt.Net.BCrypt.Verify(model.password, user.password)
             ? user : null;
@@ -43,9 +48,9 @@ public class UserRepository : IUsers
         else dbUser = new User();
 
         dbUser.name = user.name;
-        dbUser.email = user.email;
         dbUser.surname = user.surname;
         dbUser.password = user.password;
+        dbUser.email = user.email.ToLower();
         
         if(dbUser.id == 0) this.dbContext.Add(dbUser);
         this.dbContext.SaveChanges();

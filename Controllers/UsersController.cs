@@ -17,6 +17,7 @@ public class UsersController : Controller
         _users = users;
     }
 
+    [Route("index")]
     public IActionResult index()
     {
         string orderBy = HttpContext.Request.Query["orderBy"];
@@ -30,30 +31,32 @@ public class UsersController : Controller
         return View(viewModels);
     }
 
-    [Route("/create")]
+    [Route("create")]
     public IActionResult create()
     {
-        return View();
+        return View(new UpdateViewModels("/users/create", new User()));
     }
 
     [HttpGet]
-    [Route("/update/{id:int}")]
+    [Route("update/{id:int}")]
     public IActionResult update(int id)
     {
         User user = (User) this._users.GetById(id);
-        return View(new UpdateViewModels(user));
+        return View(new UpdateViewModels("/users/update", user));
     }
 
     [HttpPost]
-    [Route("/update")]
+    [Route("update")]
     public RedirectResult update(User user)
-    {
+    {   
+        if(user.id == 0) this._users.PasswordHashing(user);
         user = (User) this._users.SaveOne(user);
+
         return Redirect("/users/update/" + user.id);
     }
 
     [HttpPost]
-    [Route("/delete/{id:int}")]
+    [Route("delete/{id:int}")]
     public ActionResult delete(int id)
     {
         _users.RemoveById(id);

@@ -1,3 +1,4 @@
+@using Models;
 @using ViewModels.Users;
 @model IndexViewModels;
 
@@ -41,49 +42,34 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Назва</th>
-                            <th>Адреса</th>
+                            <th>Email</th>
+                            <th>Прізвище</th>
+                            <th>Ім'я</th>
                             <th>Статус</th>
                             <th>Дії</th>
                         </tr>
                     </thead>
-
                     <tbody>
-                        <tr>
-                            @* <td class="table-img">
-                                <img src="assets/images/user/user1.jpg" alt="">
-                            </td> *@
-                            <td>1</td>
-                            <td>Київ-1</td>
-                            <td>Троєщина</td>
-                            <td>
-                                <span class="label bg-green shadow-style">Active</span>
-                            </td>
-                            <td>
-                                <button class="btn tblActnBtn">
-                                    <i class="material-icons">mode_edit</i>
-                                </button>
-                                <button class="btn tblActnBtn">
-                                    <i class="material-icons">delete</i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Київ-2</td>
-                            <td>Дарниця</td>
-                            <td>
-                                <span class="label bg-red shadow-style">Inactive</span>
-                            </td>
-                            <td>
-                                <button class="btn tblActnBtn">
-                                    <i class="material-icons">mode_edit</i>
-                                </button>
-                                <button class="btn tblActnBtn">
-                                    <i class="material-icons">delete</i>
-                                </button>
-                            </td>
-                        </tr>
+                        @foreach(User user in Model.users){
+                            <tr>
+                                <td class="table-img">
+                                    <img src="/assets/images/user/user1.jpg" alt="">
+                                </td>
+                                <td>@user.email</td>
+                                <td>@user.surname</td>
+                                <td>@user.name</td>
+                                <td><span class="label bg-green shadow-style">Активний</span></td>
+                                <td>
+                                    <button class="btn tblActnBtn" onclick="location.href = '/users/update/@user.id'">
+                                        <i class="material-icons">mode_edit</i>
+                                    </button>
+                                    <button class="btn tblActnBtn" onclick="document.getElementById('delete-user-form-@user.id').submit()">
+                                        <i class="material-icons">delete</i>
+                                    </button>
+                                    <form id="delete-user-form-@user.id" action="/users/delete/@user.id" method="post"></form>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
