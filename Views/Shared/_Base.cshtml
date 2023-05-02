@@ -42,14 +42,10 @@
 
         <!-- Plugins Js -->
         <script src="/assets/js/app.min.js"></script>
-        <script src="/assets/js/chart.min.js"></script>
+        @RenderSection("PluginsScripts", required: false)
 
         <!-- Custom Js -->
         <script src="/assets/js/admin.js"></script>
-        <script src="/assets/js/pages/index.js"></script>
-        <script src="/assets/js/pages/charts/jquery-knob.js"></script>
-        <script src="/assets/js/pages/sparkline/sparkline-data.js"></script>
-        <script src="/assets/js/pages/medias/carousel.js"></script>
         @RenderSection("CustomScripts", required: false)
     </body>
 </html>
