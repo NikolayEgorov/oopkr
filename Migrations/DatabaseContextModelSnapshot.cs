@@ -28,11 +28,15 @@ namespace oopkr.Migrations
                     b.Property<int>("consumptionPower")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("currentPower")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("generatePower")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("inWork")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("id");
 
@@ -45,6 +49,19 @@ namespace oopkr.Migrations
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("address")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("boillersCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("maxConsumptionPower")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("maxGeneratePower")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("name")
@@ -73,6 +90,9 @@ namespace oopkr.Migrations
                     b.Property<string>("password")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("status")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("surname")
                         .IsRequired()

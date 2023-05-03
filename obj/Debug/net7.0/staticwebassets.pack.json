@@ -3377,6 +3377,10 @@
       "PackagePath": "staticwebassets/favicon.ico"
     },
     {
+      "Id": "/home/mykola/dotNetProjects/oopkr/wwwroot/images/login.jpg",
+      "PackagePath": "staticwebassets/images/login.jpg"
+    },
+    {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.build.oopkr.props",
       "PackagePath": "build\\oopkr.props"
     },

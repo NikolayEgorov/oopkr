@@ -101,3 +101,6 @@
 /home/mykola/dotNetProjects/oopkr/obj/Debug/net7.0/ref/oopkr.dll
 /home/mykola/dotNetProjects/oopkr/bin/Debug/net7.0/package.json
 /home/mykola/dotNetProjects/oopkr/bin/Debug/net7.0/BCrypt.Net-Next.dll
+/home/mykola/dotNetProjects/oopkr/bin/Debug/net7.0/Microsoft.Owin.dll
+/home/mykola/dotNetProjects/oopkr/bin/Debug/net7.0/Microsoft.Owin.Security.dll
+/home/mykola/dotNetProjects/oopkr/bin/Debug/net7.0/Owin.dll

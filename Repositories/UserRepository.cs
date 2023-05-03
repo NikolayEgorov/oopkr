@@ -20,11 +20,24 @@ public class UserRepository : IUsers
     {
         if(this.dbContext.User.Count() == 0) return null;
 
-        User user = this.dbContext.User
-            .Where(u => u.email.Equals(model.email)).First();
+        User user = null;
+        try {
+            user = this.dbContext.User.Where(
+                u => u.email == model.email.ToLower()).First();
+        } catch(InvalidOperationException e) {
+            return user;
+        }
 
         return BCrypt.Net.BCrypt.Verify(model.password, user.password)
             ? user : null;
+    }
+
+    public User PasswordHashing(User user)
+    {
+        user.password = BCrypt.Net.BCrypt
+            .HashPassword(user.password);
+
+        return user;
     }
 
     public Base SaveOne(Base model)
@@ -35,10 +48,10 @@ public class UserRepository : IUsers
         else dbUser = new User();
 
         dbUser.name = user.name;
-        dbUser.email = user.email;
+        dbUser.status = user.status;
         dbUser.surname = user.surname;
-        dbUser.password = BCrypt.Net.BCrypt
-            .HashPassword(user.password);
+        dbUser.password = user.password;
+        dbUser.email = user.email.ToLower();
         
         if(dbUser.id == 0) this.dbContext.Add(dbUser);
         this.dbContext.SaveChanges();

@@ -16,7 +16,11 @@ namespace oopkr.Migrations
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    name = table.Column<string>(type: "TEXT", nullable: false)
+                    name = table.Column<string>(type: "TEXT", nullable: false),
+                    address = table.Column<string>(type: "TEXT", nullable: false),
+                    boillersCount = table.Column<int>(type: "INTEGER", nullable: false),
+                    maxGeneratePower = table.Column<int>(type: "INTEGER", nullable: false),
+                    maxConsumptionPower = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,7 +36,8 @@ namespace oopkr.Migrations
                     name = table.Column<string>(type: "TEXT", nullable: false),
                     surname = table.Column<string>(type: "TEXT", nullable: false),
                     email = table.Column<string>(type: "TEXT", nullable: false),
-                    password = table.Column<string>(type: "TEXT", nullable: false)
+                    password = table.Column<string>(type: "TEXT", nullable: false),
+                    status = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,7 +50,8 @@ namespace oopkr.Migrations
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    inWork = table.Column<bool>(type: "INTEGER", nullable: false),
+                    title = table.Column<string>(type: "TEXT", nullable: false),
+                    currentPower = table.Column<int>(type: "INTEGER", nullable: false),
                     generatePower = table.Column<int>(type: "INTEGER", nullable: false),
                     consumptionPower = table.Column<int>(type: "INTEGER", nullable: false),
                     Plantid = table.Column<int>(type: "INTEGER", nullable: true)

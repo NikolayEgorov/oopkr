@@ -20,14 +20,31 @@ public class AccountController : Controller
 
     public IActionResult Login()
     {
-        ClaimsPrincipal user = HttpContext.User;
-        Console.WriteLine(user.Identity.IsAuthenticated);
+        if(this._iUsers.All.Count() == 0) {
+            User newUser = Models.User.CreateAdmin();
+            newUser = this._iUsers.PasswordHashing(newUser);
+            
+            this._iUsers.SaveOne(newUser);
+        }
 
+        ClaimsPrincipal user = HttpContext.User;
+    
         if(user.Identity.IsAuthenticated) {
             return RedirectToAction("Index", "Home");
         }
 
         return View();
+    }
+
+    [Authorize]
+    public IActionResult Register()
+    {
+        User user = new User();
+        user.email = HttpContext.Request.Query["email"];
+        user.password = HttpContext.Request.Query["password"];
+
+        this._iUsers.SaveOne(this._iUsers.PasswordHashing(user));
+        return RedirectToAction("Login", "Account");
     }
 
     [HttpPost]
@@ -58,8 +75,11 @@ public class AccountController : Controller
     }
 
     [Authorize]
-    public ActionResult<User> logout(UserDto request)
+    public async Task<IActionResult> logout()
     {
+        await HttpContext.SignOutAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme);
+            
         return RedirectToAction("Login", "Account");
     }
 }

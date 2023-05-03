@@ -1,0 +1,58 @@
+@using ViewModels.Bollers;
+@model UpdateViewModels;
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="counter-box text-center white">
+
+            <h2 class="card-inside-title">@ViewData["headerTitle"]</h2>
+
+            <form action="/bollers/update" method="post">
+                <input type="hidden" name="id" value="@Model.boller.id">
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="title"
+                                    value="@Model.boller.title" placeholder="Назва" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="generatePower"
+                                    value="@Model.boller.generatePower" placeholder="Виробнича потужність (ГКл)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="consumptionPower"
+                                    value="@Model.boller.consumptionPower" placeholder="Споживаюча потужність (м3/год)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <button class="btn-hover color-4">Зберегти</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+@using Models;
+@using ViewModels.Plants
+@model UpdateViewModels;
+
+@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="counter-box text-center white">
+
+            <h2 class="card-inside-title">@ViewData["headerTitle"]</h2>
+
+            <form action="/plants/update" method="post">
+                <input type="hidden" name="id" value="@Model.plant.id">
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="name"
+                                    value="@Model.plant.name" placeholder="Назва" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="address"
+                                    value="@Model.plant.address" placeholder="Адреса" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="input-field col s12">
+                            <select name="bollerIds" multiple>
+                                <option value="" disabled selected>Оберіть обладнання</option>
+                                @foreach (Boller boller in Model.bollers){
+                                    @if(Model.plant.bollers.Contains(boller)){
+                                        <option value="@boller.id" selected>@boller.title</option>
+                                    } else {
+                                        <option value="@boller.id">@boller.title</option>
+                                    }
+                                }
+                            </select>
+                            <label>Обладнання об'єкту</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <button class="btn-hover color-5" data-type="add-new" onclick="return false;">Створити нове обладнання</button>
+                        <button class="btn-hover color-4">Зберегти</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section PluginsScripts {
+    <script src="/assets/js/form.min.js"></script>
+}
+
+@section CustomScripts {
+    <script>
+        $(document).ready(() => {
+            $('[name="bollerIds"]').formSelect();
+            document.querySelector('[data-type="add-new"]').addEventListener('click', () => {
+                location.href = "/bollers/create";
+            });
+        });
+    </script>
+}
