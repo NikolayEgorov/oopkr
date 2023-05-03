@@ -28,11 +28,15 @@ namespace oopkr.Migrations
                     b.Property<int>("consumptionPower")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("currentPower")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("generatePower")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("inWork")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("title")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
 
                     b.HasKey("id");
 

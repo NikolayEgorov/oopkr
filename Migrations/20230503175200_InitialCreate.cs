@@ -50,7 +50,8 @@ namespace oopkr.Migrations
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    inWork = table.Column<bool>(type: "INTEGER", nullable: false),
+                    title = table.Column<string>(type: "TEXT", nullable: false),
+                    currentPower = table.Column<int>(type: "INTEGER", nullable: false),
                     generatePower = table.Column<int>(type: "INTEGER", nullable: false),
                     consumptionPower = table.Column<int>(type: "INTEGER", nullable: false),
                     Plantid = table.Column<int>(type: "INTEGER", nullable: true)

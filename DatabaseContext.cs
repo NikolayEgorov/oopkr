@@ -8,10 +8,6 @@ public class DatabaseContext : DbContext
     public DbSet<User> User { get; set; }
     public DbSet<Boller> Boller { get; set; }
     public DbSet<Plant> Plant { get; set; }
-    // public DbSet<Order> Order { get; set; }
-    // public DbSet<Item> Item { get; set; }
-    // public DbSet<Product> Product { get; set; }
-    // public DbSet<ItemProduct> ItemProduct { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

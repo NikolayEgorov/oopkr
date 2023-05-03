@@ -40,13 +40,13 @@
                 <div class="row clearfix">
                     <div class="col-sm-6">
                         <div class="input-field col s12">
-                            <select name="bollerIds">
+                            <select name="bollerIds" multiple>
                                 <option value="" disabled selected>Оберіть обладнання</option>
                                 @foreach (Boller boller in Model.bollers){
-                                    @if(Model.bollers.Contains(boller)){
-                                        <option value="@boller.id" selected>@boller.id</option>
+                                    @if(Model.plant.bollers.Contains(boller)){
+                                        <option value="@boller.id" selected>@boller.title</option>
                                     } else {
-                                        <option value="@boller.id">@boller.id</option>
+                                        <option value="@boller.id">@boller.title</option>
                                     }
                                 }
                             </select>
@@ -57,6 +57,7 @@
 
                 <div class="row clearfix">
                     <div class="col-sm-6">
+                        <button class="btn-hover color-5" data-type="add-new" onclick="return false;">Створити нове обладнання</button>
                         <button class="btn-hover color-4">Зберегти</button>
                     </div>
                 </div>
@@ -72,8 +73,10 @@
 @section CustomScripts {
     <script>
         $(document).ready(() => {
-            $('[name="status"]').formSelect();
+            $('[name="bollerIds"]').formSelect();
+            document.querySelector('[data-type="add-new"]').addEventListener('click', () => {
+                location.href = "/bollers/create";
+            });
         });
-
     </script>
 }

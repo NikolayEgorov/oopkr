@@ -1,11 +1,11 @@
 @using Models;
-@using ViewModels.Plants;
+@using ViewModels.Bollers;
 @model IndexViewModels;
 
 @{
     Layout = "_Layout";
-    ViewData["title"] = "Об'єкти";
-    ViewData["layoutContainerClass"] = "plants-index";
+    ViewData["title"] = "Котельне обладнання";
+    ViewData["layoutContainerClass"] = "bollers-index";
 }
 
 <!-- Table -->
@@ -22,7 +22,7 @@
                     </a>
                     <ul class="dropdown-menu pull-right">
                         <li>
-                            <a href="/plants/create">Додати</a>
+                            <a href="/bollers/create">Додати</a>
                         </li>
                     </ul>
                 </li>
@@ -35,31 +35,27 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Назва</th>
-                            <th>Адреса</th>
-                            <th>Котли (шт.)</th>
-                            <th>Макс Вироб Потужність (ГКл)</th>
-                            <th>Макс Спожив Потужність (м3/год)</th>
+                            <th>Виробнича потужність (ГКл)</th>
+                            <th>Споживаюча потужність (м3/год)</th>
                             <th>Дії</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(Plant plant in Model.plants){
+                        @foreach(Boller boller in Model.bollers){
                             <tr>
-                                <td class="table-img">@plant.id</td>
-                                <td>@plant.name</td>
-                                <td>@plant.address</td>
-                                <td>@plant.boillersCount</td>
-                                <td>@plant.maxGeneratePower</td>
-                                <td>@plant.maxConsumptionPower</td>
+                                <td class="table-img">
+                                    <img src="/assets/images/user/user1.jpg" alt="">
+                                </td>
+                                <td>@boller.generatePower</td>
+                                <td>@boller.consumptionPower</td>
                                 <td>
-                                    <button class="btn tblActnBtn" onclick="location.href = '/plants/update/@plant.id'">
+                                    <button class="btn tblActnBtn" onclick="location.href = '/bollers/update/@boller.id'">
                                         <i class="material-icons">mode_edit</i>
                                     </button>
-                                    <button class="btn tblActnBtn" onclick="document.getElementById('delete-form-@plant.id').submit()">
+                                    <button class="btn tblActnBtn" onclick="document.getElementById('delete-form-@boller.id').submit()">
                                         <i class="material-icons">delete</i>
                                     </button>
-                                    <form id="delete-form-@plant.id" action="/plants/delete/@plant.id" method="post"></form>
+                                    <form id="delete-form-@boller.id" action="/bollers/delete/@boller.id" method="post"></form>
                                 </td>
                             </tr>
                         }
