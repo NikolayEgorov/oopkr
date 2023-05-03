@@ -16,7 +16,11 @@ namespace oopkr.Migrations
                 {
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    name = table.Column<string>(type: "TEXT", nullable: false)
+                    name = table.Column<string>(type: "TEXT", nullable: false),
+                    address = table.Column<string>(type: "TEXT", nullable: false),
+                    boillersCount = table.Column<int>(type: "INTEGER", nullable: false),
+                    maxGeneratePower = table.Column<int>(type: "INTEGER", nullable: false),
+                    maxConsumptionPower = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -4,12 +4,17 @@ using Models;
 
 public class UpdateViewModels
 {
-    public string action;
     public User user;
+    public string headerTitle;
 
-    public UpdateViewModels(string action, User user)
+    public UpdateViewModels(User user)
     {
-        this.action = action;
         this.user = user;
+
+        if(this.user.id == 0) {
+            this.headerTitle = "Новий оператор";
+        } else {
+            this.headerTitle = "Профіль оператора: " + this.user.GetFullName();
+        }
     }
 }

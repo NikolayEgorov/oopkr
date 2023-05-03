@@ -25,7 +25,6 @@ public class AccountController : Controller
             newUser = this._iUsers.PasswordHashing(newUser);
             
             this._iUsers.SaveOne(newUser);
-            this._iUsers.SaveOne(newUser);
         }
 
         ClaimsPrincipal user = HttpContext.User;

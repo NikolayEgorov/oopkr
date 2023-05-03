@@ -7,7 +7,6 @@ using ViewModels.Users;
 using Microsoft.AspNetCore.Mvc;
 
 [Route("users")]
-// [Route("[contorller]/[action]")]
 public class UsersController : Controller
 {
     private readonly IUsers _users;
@@ -20,21 +19,14 @@ public class UsersController : Controller
     [Route("index")]
     public IActionResult index()
     {
-        string orderBy = HttpContext.Request.Query["orderBy"];
-        if(orderBy == null) orderBy = "id";
-
-        string order = HttpContext.Request.Query["order"];
-        if(order == null) order = SortingEnum.ASC;
-
         IndexViewModels viewModels = new IndexViewModels((List<User>)_users.All);
-
         return View(viewModels);
     }
 
     [Route("create")]
     public IActionResult create()
-    {
-        return View(new UpdateViewModels("/users/create", new User()));
+    {   
+        return View("/Views/Users/update.cshtml", new UpdateViewModels(new User()));
     }
 
     [HttpGet]
@@ -42,17 +34,17 @@ public class UsersController : Controller
     public IActionResult update(int id)
     {
         User user = (User) this._users.GetById(id);
-        return View(new UpdateViewModels("/users/update", user));
+        return View(new UpdateViewModels(user));
     }
 
     [HttpPost]
     [Route("update")]
-    public RedirectResult update(User user)
-    {   
+    public ActionResult update(User user)
+    {
         if(user.id == 0) this._users.PasswordHashing(user);
         user = (User) this._users.SaveOne(user);
 
-        return Redirect("/users/update/" + user.id);
+        return RedirectToAction("index", "Users");
     }
 
     [HttpPost]
@@ -60,6 +52,6 @@ public class UsersController : Controller
     public ActionResult delete(int id)
     {
         _users.RemoveById(id);
-        return Redirect("/users/index");
+        return RedirectToAction("index", "Users");
     }
 }

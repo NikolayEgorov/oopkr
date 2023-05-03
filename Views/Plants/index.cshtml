@@ -1,11 +1,11 @@
 @using Models;
-@using ViewModels.Users;
+@using ViewModels.Plants;
 @model IndexViewModels;
 
 @{
     Layout = "_Layout";
-    ViewData["title"] = "Оператори системи";
-    ViewData["layoutContainerClass"] = "users-index";
+    ViewData["title"] = "Об'єкти";
+    ViewData["layoutContainerClass"] = "plants-index";
 }
 
 <!-- Table -->
@@ -22,7 +22,7 @@
                     </a>
                     <ul class="dropdown-menu pull-right">
                         <li>
-                            <a href="/users/create">Додати</a>
+                            <a href="/plants/create">Додати</a>
                         </li>
                     </ul>
                 </li>
@@ -35,37 +35,30 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Email</th>
-                            <th>Прізвище</th>
-                            <th>Ім'я</th>
-                            <th>Статус</th>
+                            <th>Назва</th>
+                            <th>Адреса</th>
+                            <th>Котли (шт.)</th>
+                            <th>Макс Вироб Потужність (ГКл)</th>
+                            <th>Макс Спожив Потужність (м3/год)</th>
                             <th>Дії</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(User user in Model.users){
+                        @foreach(Plant plant in Model.plants){
                             <tr>
-                                <td class="table-img">
-                                    <img src="/assets/images/user/user1.jpg" alt="">
-                                </td>
-                                <td>@user.email</td>
-                                <td>@user.surname</td>
-                                <td>@user.name</td>
+                                <td class="table-img">@plant.id</td>
+                                <td>@plant.name</td>
+                                <td>@plant.boillersCount</td>
+                                <td>@plant.maxGeneratePower</td>
+                                <td>@plant.maxConsumptionPower</td>
                                 <td>
-                                    @if(user.status == 1) {
-                                        <span class="label bg-green shadow-style">Активний</span>
-                                    } else {
-                                        <span class="label bg-red shadow-style">Неактивний</span>
-                                    }
-                                </td>
-                                <td>
-                                    <button class="btn tblActnBtn" onclick="location.href = '/users/update/@user.id'">
+                                    <button class="btn tblActnBtn" onclick="location.href = '/users/update/@plant.id'">
                                         <i class="material-icons">mode_edit</i>
                                     </button>
-                                    <button class="btn tblActnBtn" onclick="document.getElementById('delete-user-form-@user.id').submit()">
+                                    <button class="btn tblActnBtn" onclick="document.getElementById('delete-user-form-@plant.id').submit()">
                                         <i class="material-icons">delete</i>
                                     </button>
-                                    <form id="delete-user-form-@user.id" action="/users/delete/@user.id" method="post"></form>
+                                    <form id="delete-user-form-@plant.id" action="/users/delete/@plant.id" method="post"></form>
                                 </td>
                             </tr>
                         }

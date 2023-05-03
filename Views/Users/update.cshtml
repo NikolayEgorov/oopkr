@@ -2,6 +2,102 @@
 @model UpdateViewModels;
 
 @{
-    Layout = "create";
-    ViewData["headerTitle"] = "Профіль оператора: " + Model.user.GetFullName();
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="counter-box text-center white">
+
+            <h2 class="card-inside-title">@ViewData["headerTitle"]</h2>
+
+            <form action="/users/update" method="post">
+                <input type="hidden" name="id" value="@Model.user.id">
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="email"
+                                    value="@Model.user.email" placeholder="Email" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="name"
+                                    value="@Model.user.name" placeholder="Ім'я" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="text" class="form-control" name="surname"
+                                    value="@Model.user.surname" placeholder="Прізвище"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <div class="form-line">
+                                <input type="password" class="form-control" name="password"
+                                    value="@Model.user.password" placeholder="Пароль"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <div class="input-field col s12">
+                            <select name="status">
+                                <option value="" disabled selected>Оберіть статус</option>
+                                @if(Model.user.status == 1) {
+                                    <option value="1" selected>Активний</option>
+                                } else {
+                                    <option value="1">Активний</option>
+                                }
+                                @if(Model.user.status == 0) {
+                                    <option value="0" selected>Деактивований</option>
+                                } else {
+                                    <option value="0">Деактивований</option>
+                                }
+                            </select>
+                            <label>Статус оператора</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <button class="btn-hover color-4">Зберегти</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section PluginsScripts {
+    <script src="/assets/js/form.min.js"></script>
+}
+
+@section CustomScripts {
+    <script>
+        $(document).ready(() => {
+            $('[name="status"]').formSelect();
+        });
+
+    </script>
 }

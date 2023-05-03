@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace oopkr.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230502205755_InitialCreate")]
+    [Migration("20230503133926_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -48,6 +48,19 @@ namespace oopkr.Migrations
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("address")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("boillersCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("maxConsumptionPower")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("maxGeneratePower")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("name")
