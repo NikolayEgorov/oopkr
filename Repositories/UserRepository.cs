@@ -40,6 +40,12 @@ public class UserRepository : IUsers
         return user;
     }
 
+    public User GetByLogin(string login)
+    {
+        Console.WriteLine(login);
+        return this.dbContext.User.Where(u => u.email == login).First();
+    }
+
     public Base SaveOne(Base model)
     {
         User dbUser = null; User user = (User) model;

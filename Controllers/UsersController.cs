@@ -11,9 +11,9 @@ public class UsersController : Controller
 {
     private readonly IUsers _users;
 
-    public UsersController(IUsers users)
+    public UsersController(IUsers iUsers)
     {
-        _users = users;
+        _users = iUsers;
     }
 
     [Route("index")]

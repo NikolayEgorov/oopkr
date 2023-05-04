@@ -1,0 +1,17 @@
+@using Models;
+@using ViewModels.Plants
+@model SettingsViewModel;
+
+@{
+    Layout = "_Layout";
+    ViewData["headerTitle"] = "Зміна параметрів. Об'єкт: " + Model.plant.name;}
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="counter-box text-center white">
+
+            <h2 class="card-inside-title">@ViewData["headerTitle"]</h2>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,8 @@
-﻿@{
+﻿@using Models;
+@using ViewModels.Home;
+@model IndexViewModels;
+
+@{
     Layout = "_Layout";
     ViewData["Title"] = "ООП КР | Головна";
 }
@@ -27,56 +31,46 @@
 <div class="row">
     <div class="col-lg-3 col-sm-6">
         <div class="counter-box text-center white">
-            <div class="text font-17 m-b-5">Total Income</div>
-            <h3 class="m-b-10">$758
+            <div class="text font-17 m-b-5">Всого об'єктів</div>
+            <h3 class="m-b-10">@Model.plants.Count()
                 <i class="material-icons col-green">trending_up</i>
             </h3>
-            <div class="icon">
-                <div class="chart chart-bar"></div>
-            </div>
         </div>
     </div>
     <div class="col-lg-3 col-sm-6">
         <div class="counter-box text-center white">
-            <div class="text font-17 m-b-5">Orders Received</div>
-            <h3 class="m-b-10">1025
+            <div class="text font-17 m-b-5">Всього котлів</div>
+            <h3 class="m-b-10">@Model.bollers.Count()
                 <i class="material-icons col-red">trending_down</i>
             </h3>
-            <div class="icon">
-                <span class="chart chart-line"></span>
-            </div>
         </div>
     </div>
     <div class="col-lg-3 col-sm-6">
         <div class="counter-box text-center white">
-            <div class="text font-17 m-b-5">Total Sales</div>
-            <h3 class="m-b-10">956
+            <div class="text font-17 m-b-5">Активні обєкти</div>
+            <h3 class="m-b-10">@Model.plants.Count()
                 <i class="material-icons col-green">trending_up</i>
             </h3>
-            <div class="icon">
-                <div class="chart chart-pie"></div>
-            </div>
         </div>
     </div>
     <div class="col-lg-3 col-sm-6">
         <div class="counter-box text-center white">
-            <div class="text font-17 m-b-5">Total Active Users</div>
-            <h3 class="m-b-10">214
+            <div class="text font-17 m-b-5">Обладнання в роботі</div>
+            <h3 class="m-b-10">@Model.bollers.Count()
                 <i class="material-icons col-red">trending_down</i>
             </h3>
-            <div class="icon">
-                <div class="chart" id="liveChart">Loading..</div>
-            </div>
         </div>
     </div>
 </div>
 <!-- #END# Widgets -->
+
+<!-- #Day Report -->
 <div class="row">
     <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
         <div class="card">
             <div class="header">
                 <h2>
-                    <strong>Recent</strong> Report</h2>
+                    <strong>Денний</strong> Звіт</h2>
                 <ul class="header-dropdown m-r--5">
                     <li class="dropdown">
                         <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
@@ -150,7 +144,7 @@
         <div class="card">
             <div class="header">
                 <h2>
-                    <strong>Recent</strong> Report</h2>
+                    <strong>Денний</strong> Звіт</h2>
                 <ul class="header-dropdown m-r--5">
                     <li class="dropdown">
                         <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
@@ -190,6 +184,252 @@
         </div>
     </div>
 </div>
+<!-- #End Day Report -->
+
+<!-- #Week Report -->
+<div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    <strong>Тижневий</strong> Звіт</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                            role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#" onClick="return false;">Action</a>
+                            </li>
+                            <li>
+                                <a href="#" onClick="return false;">Another action</a>
+                            </li>
+                            <li>
+                                <a href="#" onClick="return false;">Something else here</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="card">
+                    <div class="chart-box-left">
+                        <div class="chart-note">
+                            <span class="dot dot-product"></span>
+                            <span>products</span>
+                        </div>
+                        <div class="chart-note mr-0">
+                            <span class="dot dot-service"></span>
+                            <span>services</span>
+                        </div>
+                    </div>
+                    <!-- Canvas for Chart.js -->
+                    <canvas id="chartReport1"></canvas>
+                    <!-- Custom Axis -->
+                    <div class="axisData">
+                        <div class="tick">
+                            MON <span class="value productValue">24</span> <span
+                                class="value serviceValue">20</span>
+                        </div>
+                        <div class="tick">
+                            TUE <span class="value productValue">18</span> <span
+                                class="value serviceValue">22</span>
+                        </div>
+                        <div class="tick">
+                            WED <span class="value productValue">16</span> <span
+                                class="value serviceValue">30</span>
+                        </div>
+                        <div class="tick">
+                            THU <span class="value productValue">18</span> <span
+                                class="value serviceValue">22</span>
+                        </div>
+                        <div class="tick">
+                            FRI <span class="value productValue">24</span> <span
+                                class="value serviceValue">18</span>
+                        </div>
+                        <div class="tick">
+                            SAT <span class="value productValue">36</span> <span
+                                class="value serviceValue">22</span>
+                        </div>
+                        <div class="tick">
+                            SUN <span class="value productValue">28</span> <span
+                                class="value serviceValue">30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    <strong>Тижневий</strong> Звіт</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                            role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#" onClick="return false;">Action</a>
+                            </li>
+                            <li>
+                                <a href="#" onClick="return false;">Another action</a>
+                            </li>
+                            <li>
+                                <a href="#" onClick="return false;">Something else here</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="card">
+                    <div class="chart-box-left">
+                        <div class="chart-note">
+                            <span class="dot dot-product"></span>
+                            <span>products</span>
+                        </div>
+                        <div class="chart-note mr-0">
+                            <span class="dot dot-service"></span>
+                            <span>services</span>
+                        </div>
+                    </div>
+                    <!-- Canvas for Chart.js -->
+                    <canvas id="chartReport2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #End Week Report -->
+
+<!-- #Month Report -->
+<div class="row">
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    <strong>Місячний</strong> Звіт</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                            role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#" onClick="return false;">Action</a>
+                            </li>
+                            <li>
+                                <a href="#" onClick="return false;">Another action</a>
+                            </li>
+                            <li>
+                                <a href="#" onClick="return false;">Something else here</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="card">
+                    <div class="chart-box-left">
+                        <div class="chart-note">
+                            <span class="dot dot-product"></span>
+                            <span>products</span>
+                        </div>
+                        <div class="chart-note mr-0">
+                            <span class="dot dot-service"></span>
+                            <span>services</span>
+                        </div>
+                    </div>
+                    <!-- Canvas for Chart.js -->
+                    <canvas id="chartReport1"></canvas>
+                    <!-- Custom Axis -->
+                    <div class="axisData">
+                        <div class="tick">
+                            MON <span class="value productValue">24</span> <span
+                                class="value serviceValue">20</span>
+                        </div>
+                        <div class="tick">
+                            TUE <span class="value productValue">18</span> <span
+                                class="value serviceValue">22</span>
+                        </div>
+                        <div class="tick">
+                            WED <span class="value productValue">16</span> <span
+                                class="value serviceValue">30</span>
+                        </div>
+                        <div class="tick">
+                            THU <span class="value productValue">18</span> <span
+                                class="value serviceValue">22</span>
+                        </div>
+                        <div class="tick">
+                            FRI <span class="value productValue">24</span> <span
+                                class="value serviceValue">18</span>
+                        </div>
+                        <div class="tick">
+                            SAT <span class="value productValue">36</span> <span
+                                class="value serviceValue">22</span>
+                        </div>
+                        <div class="tick">
+                            SUN <span class="value productValue">28</span> <span
+                                class="value serviceValue">30</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    <strong>Місячний</strong> Звіт</h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
+                            role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li>
+                                <a href="#" onClick="return false;">Action</a>
+                            </li>
+                            <li>
+                                <a href="#" onClick="return false;">Another action</a>
+                            </li>
+                            <li>
+                                <a href="#" onClick="return false;">Something else here</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body">
+                <div class="card">
+                    <div class="chart-box-left">
+                        <div class="chart-note">
+                            <span class="dot dot-product"></span>
+                            <span>products</span>
+                        </div>
+                        <div class="chart-note mr-0">
+                            <span class="dot dot-service"></span>
+                            <span>services</span>
+                        </div>
+                    </div>
+                    <!-- Canvas for Chart.js -->
+                    <canvas id="chartReport2"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- #End Month Report -->
+
 <div class="row clearfix">
     <!-- Task Info -->
     <div class="col-12">
@@ -225,47 +465,35 @@
                                 <th>#</th>
                                 <th>Назва</th>
                                 <th>Адреса</th>
-                                <th>Status</th>
+                                <th>Котли (шт.)</th>
+                                <th>Макс Вироб Потужність (ГКл)</th>
+                                <th>Макс Спожив Потужність (м3/год)</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                @* <td class="table-img">
-                                    <img src="assets/images/user/user1.jpg" alt="">
-                                </td> *@
-                                <td>1</td>
-                                <td>Київ-1</td>
-                                <td>Троєщина</td>
-                                <td>
-                                    <span class="label bg-green shadow-style">Active</span>
-                                </td>
-                                <td>
-                                    <button class="btn tblActnBtn">
-                                        <i class="material-icons">mode_edit</i>
-                                    </button>
-                                    <button class="btn tblActnBtn">
-                                        <i class="material-icons">delete</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Київ-2</td>
-                                <td>Дарниця</td>
-                                <td>
-                                    <span class="label bg-red shadow-style">Inactive</span>
-                                </td>
-                                <td>
-                                    <button class="btn tblActnBtn">
-                                        <i class="material-icons">mode_edit</i>
-                                    </button>
-                                    <button class="btn tblActnBtn">
-                                        <i class="material-icons">delete</i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @foreach(Plant plant in Model.plants){
+                                <tr>
+                                    @* <td class="table-img">
+                                        <img src="assets/images/user/user1.jpg" alt="">
+                                    </td> *@
+                                    <td>@plant.id</td>
+                                    <td>@plant.name</td>
+                                    <td>@plant.address</td>
+                                    <td>@plant.bollers.Count()</td>
+                                    <td>@plant.maxGeneratePower</td>
+                                    <td>@plant.maxConsumptionPower</td>
+                                    <td>
+                                        <button class="btn tblActnBtn">
+                                            <i class="material-icons">mode_edit</i>
+                                        </button>
+                                        <button class="btn tblActnBtn">
+                                            <i class="material-icons">delete</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>

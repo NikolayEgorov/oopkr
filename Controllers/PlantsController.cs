@@ -57,6 +57,14 @@ public class PlantsController : Controller
     }
 
     [HttpPost]
+    [Route("settings/{id:int}")]
+    public IActionResult settings(int id)
+    {
+        Plant plant = (Plant) this._iPlants.GetById(id);
+        return View(new SettingsViewModel(plant));
+    }
+
+    [HttpPost]
     [Route("delete/{id:int}")]
     public ActionResult delete(int id)
     {

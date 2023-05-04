@@ -31,7 +31,7 @@
 
         <div class="tableBody">
             <div class="table-responsive">
-                <table class="table table-hover dashboard-task-infos">
+                <table class="table table-hover dashboard-task-infos text-center">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -55,6 +55,9 @@
                                 <td>
                                     <button class="btn tblActnBtn" onclick="location.href = '/plants/update/@plant.id'">
                                         <i class="material-icons">mode_edit</i>
+                                    </button>
+                                    <button class="btn tblActnBtn" onclick="location.href = '/plants/settings/@plant.id'">
+                                        <i class="material-icons">settings_input_component</i>
                                     </button>
                                     <button class="btn tblActnBtn" onclick="document.getElementById('delete-form-@plant.id').submit()">
                                         <i class="material-icons">delete</i>

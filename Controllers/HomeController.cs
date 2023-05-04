@@ -1,5 +1,8 @@
 ﻿namespace Controllers;
 
+using Models;
+using Interfaces;
+using ViewModels.Home;
 using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
@@ -10,10 +13,16 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 [Authorize]
 public class HomeController : Controller
 {
+    private readonly IPlants _iPlants;
+    private readonly IBollers _iBollers;
+
     private readonly ILogger<HomeController> _logger;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, IPlants iPlants, IBollers iBollers)
     {
+        this._iPlants = iPlants;
+        this._iBollers = iBollers;
+
         _logger = logger;
     }
 
@@ -25,7 +34,11 @@ public class HomeController : Controller
             return Redirect("/account/login");
         }
 
-        return View();
+        List<Plant> plants = this._iPlants.All;
+        List<Boller> bollers = this._iBollers.All;
+
+        IndexViewModels model = new IndexViewModels(plants, bollers);
+        return View(model);
     }
 
     public async Task<IActionResult> LogOut()
