@@ -25,5 +25,5 @@ then
     dotnet add package Microsoft.EntityFrameworkCore.Design
     dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.5
 
-    dotnet ef database update
+    #dotnet ef database update
 fi
