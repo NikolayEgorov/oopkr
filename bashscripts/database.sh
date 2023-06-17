@@ -20,9 +20,9 @@ then
 
     cd $PROJECT_FULL_PATH
 
-    dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-    dotnet add package Microsoft.EntityFrameworkCore.Sqlite
-    dotnet add package Microsoft.EntityFrameworkCore.Design
+    dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.5
+    dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 7.0.5
+    dotnet add package Microsoft.EntityFrameworkCore.Design --version 7.0.5
     dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.5
 
     #dotnet ef database update
