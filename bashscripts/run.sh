@@ -19,7 +19,8 @@ echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 
 dotnet tool install --global dotnet-ef
 dotnet add package BCrypt.Net-Next --version 4.0.3
-dotnet add package Microsoft.EntityFrameworkCore
+
+dotnet add package Microsoft.EntityFrameworkCore --version 7.0.5
 dotnet add package Microsoft.AspNetCore.Authentication --version 2.2.0
 
 dotnet new tool-manifest --force
