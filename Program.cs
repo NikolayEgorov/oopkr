@@ -1,5 +1,6 @@
 using Interfaces;
 using Repositories;
+using Pomelo.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
@@ -14,8 +15,11 @@ builder.Services.AddAuthentication(options => {
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-string connection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connection));
+string connection = builder.Configuration.GetConnectionString("MariaDbConnectionString");
+
+// builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connection));
+builder.Services.AddDbContext<DatabaseContext>(options => 
+    options.UseMySql(connection, new MySqlServerVersion(new Version(10, 11, 3))));
 
 builder.Services.AddTransient<IUsers, UserRepository>();
 builder.Services.AddTransient<IBollers, BollerRepository>();

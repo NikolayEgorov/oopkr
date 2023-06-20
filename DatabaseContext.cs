@@ -8,6 +8,9 @@ public class DatabaseContext : DbContext
     public DbSet<User> User { get; set; }
     public DbSet<Boller> Boller { get; set; }
     public DbSet<Plant> Plant { get; set; }
+    public DbSet<Hour> Hour { get; set; }
+    public DbSet<Day> Day { get; set; }
+    public DbSet<Month> Month { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
