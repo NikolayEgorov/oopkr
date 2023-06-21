@@ -7,5 +7,8 @@ public class Boller : Base
     public int generatePower { get; set; } = 0;
     public int consumptionPower { get; set; } = 0;
 
+    public List<PlantBoller> plantBollers { get; } = new List<PlantBoller>();
+    public List<Plant> plants { get; set; } = new List<Plant>();
+
     public Boller() {}
 }

@@ -2,6 +2,8 @@ namespace Controllers;
 
 using Models;
 using Interfaces;
+using Dto.Plants;
+using System.Text.Json;
 using ViewModels.Plants;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,11 +12,13 @@ public class PlantsController : Controller
 {
     private readonly IPlants _iPlants;
     private readonly IBollers _iBollers;
+    private readonly IPlantsBollers _iPlantsBollers;
 
-    public PlantsController(IPlants iPlants, IBollers iBollers)
+    public PlantsController(IPlants iPlants, IBollers iBollers, IPlantsBollers iPlantsBollers)
     {
         this._iPlants = iPlants;
         this._iBollers = iBollers;
+        this._iPlantsBollers = iPlantsBollers;
     }
 
     [Route("index")]
@@ -54,6 +58,30 @@ public class PlantsController : Controller
 
         this._iPlants.SaveBollers(plant);
         return RedirectToAction("index", "plants");
+    }
+
+    [HttpGet]
+    [Route("settings/{id:int}")]
+    public ActionResult settings(int id)
+    {
+        Plant plant = (Plant) this._iPlants.GetById(id);
+        return View(new SettingsViewModels(plant));
+    }
+
+    [HttpPost]
+    [Route("settings")]
+    public ActionResult settings(SettingsDto request)
+    {
+        bool status = true;
+
+        foreach(PlantBoller pb in request.plantBollers) {
+            PlantBoller plantBoller = (PlantBoller) this._iPlantsBollers.SaveOne(pb);
+
+            status = plantBoller == null;
+            if(! status) break;
+        }
+
+        return StatusCode(200, JsonSerializer.Serialize(new SettingsResponseDto(status)));
     }
 
     [HttpPost]

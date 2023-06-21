@@ -24,6 +24,7 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
 builder.Services.AddTransient<IUsers, UserRepository>();
 builder.Services.AddTransient<IBollers, BollerRepository>();
 builder.Services.AddTransient<IPlants, PlantRepository>();
+builder.Services.AddTransient<IPlantsBollers, PlantBollerRepository>();
 
 var app = builder.Build();
 

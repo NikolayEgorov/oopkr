@@ -34,7 +34,7 @@
                 <table class="table table-hover dashboard-task-infos">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th>Назва</th>
                             <th>Виробнича потужність (ГКл)</th>
                             <th>Споживаюча потужність (м3/год)</th>
                             <th>Дії</th>
@@ -43,9 +43,7 @@
                     <tbody>
                         @foreach(Boller boller in Model.bollers){
                             <tr>
-                                <td class="table-img">
-                                    <img src="/assets/images/user/user1.jpg" alt="">
-                                </td>
+                                <td>@boller.title</td>
                                 <td>@boller.generatePower</td>
                                 <td>@boller.consumptionPower</td>
                                 <td>
@@ -55,6 +53,7 @@
                                     <button class="btn tblActnBtn" onclick="document.getElementById('delete-form-@boller.id').submit()">
                                         <i class="material-icons">delete</i>
                                     </button>
+
                                     <form id="delete-form-@boller.id" action="/bollers/delete/@boller.id" method="post"></form>
                                 </td>
                             </tr>

@@ -1,5 +1,6 @@
 ﻿namespace Controllers;
 
+using ViewModels.Home;
 using System.Diagnostics;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +26,8 @@ public class HomeController : Controller
             return Redirect("/account/login");
         }
 
-        return View();
+        IndexViewModels viewModels = new IndexViewModels();
+        return View(viewModels);
     }
 
     public async Task<IActionResult> LogOut()

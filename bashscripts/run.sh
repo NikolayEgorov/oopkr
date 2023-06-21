@@ -26,7 +26,7 @@ dotnet new tool-manifest --force
 dotnet tool install --local dotnet-ef --version 7.0.5
 dotnet ef
 
-# source $BASH_SCRIPT_PATH/database.sh
+source $BASH_SCRIPT_PATH/database.sh
 
 chmod -R 777 $PROJECT_FULL_PATH
 

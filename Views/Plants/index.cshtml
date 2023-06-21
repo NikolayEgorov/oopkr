@@ -53,12 +53,16 @@
                                 <td>@plant.maxGeneratePower</td>
                                 <td>@plant.maxConsumptionPower</td>
                                 <td>
+                                    <button class="btn tblActnBtn" onclick="location.href = '/plants/settings/@plant.id'">
+                                        <i class="material-icons">settings</i>
+                                    </button>
                                     <button class="btn tblActnBtn" onclick="location.href = '/plants/update/@plant.id'">
                                         <i class="material-icons">mode_edit</i>
                                     </button>
                                     <button class="btn tblActnBtn" onclick="document.getElementById('delete-form-@plant.id').submit()">
                                         <i class="material-icons">delete</i>
                                     </button>
+                                    
                                     <form id="delete-form-@plant.id" action="/plants/delete/@plant.id" method="post"></form>
                                 </td>
                             </tr>

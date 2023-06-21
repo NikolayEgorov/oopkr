@@ -11,9 +11,13 @@ public class DatabaseContext : DbContext
     public DbSet<Hour> Hour { get; set; }
     public DbSet<Day> Day { get; set; }
     public DbSet<Month> Month { get; set; }
+    public DbSet<PlantBoller> PlantBoller { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Plant>().HasMany(p => p.bollers)
+            .WithMany(b => b.plants).UsingEntity<PlantBoller>();
+
         // modelBuilder.Entity<Item>().HasMany(i => i.products)
         //     .WithMany(p => p.items).UsingEntity<ItemProduct>();
 

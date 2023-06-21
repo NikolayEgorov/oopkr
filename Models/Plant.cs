@@ -8,6 +8,8 @@ public class Plant : Base
     public int maxGeneratePower { get; set; } = 0;
     public int maxConsumptionPower { get; set; } = 0;
 
+
+    public List<PlantBoller> plantBollers { get; } = new List<PlantBoller>();
     public List<Boller> bollers { get; set; } = new List<Boller>();
 
     public Plant() {}

@@ -1,0 +1,94 @@
+@using Models;
+@using ViewModels.Plants;
+@model SettingsViewModels;
+
+@{
+    Layout = "_Layout";
+}
+
+@section CustomStyles {
+    <link href="/assets/js/bundles/rangeSlider/css/ion.rangeSlider.css" rel="stylesheet">
+    <link href="/assets/js/bundles/rangeSlider/css/ion.rangeSlider.skinFlat.css" rel="stylesheet">
+}
+
+<style>
+    .btn-hover {
+        width: 300px;
+    }
+</style>
+
+<div class="row">
+    <div class="col-12">
+        <div class="counter-box text-center white">
+            <h2 class="card-inside-title">@ViewData["headerTitle"]</h2>
+
+            <form id="saving-form" action="/plants/settings" method="post">
+                @foreach (PlantBoller plantBoller in Model.plant.plantBollers){
+                    <div class="row clearfix">
+                        <div class="col-sm-6">
+                            <label>@plantBoller.boller.title</label>
+
+                            <div class="body">
+                                <div class="irs-demo">
+                                    <input type="text" data-type="boller-power" data-id="@plantBoller.id" data-plant-id="@plantBoller.plantId"
+                                    data-boller-id="@plantBoller.bollerId" data-power="@plantBoller.currentPower" data-max-power="@plantBoller.boller.consumptionPower"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+                <div class="row clearfix">
+                    <div class="col-sm-6">
+                        <button class="btn-hover color-4">Зберегти</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section PluginsScripts {
+    <script src="/assets/js/form.min.js"></script>
+    <script src="/assets/js/bundles/rangeSlider/js/ion.rangeSlider.js"></script>
+}
+
+@section CustomScripts {
+    <script>
+        Array.from(document.querySelectorAll('[data-type="boller-power"]')).map((e) => {
+            $(e).ionRangeSlider({
+                min: 0,
+                grid: true,
+                grid_num: 10,
+                to: parseInt(e.getAttribute('data-power')),
+                max: parseInt(e.getAttribute('data-max-power'))
+            });
+        });
+
+        document.getElementById("saving-form").addEventListener('submit', (f) => {
+            f.preventDefault();
+
+            let data = { plantBollers: [] };
+            Array.from(document.querySelectorAll('[data-type="boller-power"]')).map((e) => {
+                let boller = $(e).data("ionRangeSlider");
+                
+                data.plantBollers.push({
+                    currentPower: boller.old_to,
+                    id: e.getAttribute('data-id'),
+                    plantId: e.getAttribute('data-plant-id'),
+                    bollerId: e.getAttribute('data-boller-id')
+                });
+            });
+
+            $.ajax({
+                data: data,
+                dataType: "json",
+                url: f.target.getAttribute('action'),
+                type: f.target.getAttribute('method'),
+                success: (r) => {
+                    console.log(r)
+                }
+            });
+        });
+    </script>
+}

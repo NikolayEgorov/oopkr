@@ -15,6 +15,24 @@ namespace oopkr.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Boller",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    title = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    currentPower = table.Column<int>(type: "int", nullable: false),
+                    generatePower = table.Column<int>(type: "int", nullable: false),
+                    consumptionPower = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Boller", x => x.id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Day",
                 columns: table => new
                 {
@@ -96,41 +114,47 @@ namespace oopkr.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Boller",
+                name: "PlantBoller",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    title = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    currentPower = table.Column<int>(type: "int", nullable: false),
-                    generatePower = table.Column<int>(type: "int", nullable: false),
-                    consumptionPower = table.Column<int>(type: "int", nullable: false),
-                    Plantid = table.Column<int>(type: "int", nullable: true)
+                    plantId = table.Column<int>(type: "int", nullable: false),
+                    bollerId = table.Column<int>(type: "int", nullable: false),
+                    currentPower = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Boller", x => x.id);
+                    table.PrimaryKey("PK_PlantBoller", x => x.id);
                     table.ForeignKey(
-                        name: "FK_Boller_Plant_Plantid",
-                        column: x => x.Plantid,
+                        name: "FK_PlantBoller_Boller_bollerId",
+                        column: x => x.bollerId,
+                        principalTable: "Boller",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PlantBoller_Plant_plantId",
+                        column: x => x.plantId,
                         principalTable: "Plant",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Boller_Plantid",
-                table: "Boller",
-                column: "Plantid");
+                name: "IX_PlantBoller_bollerId",
+                table: "PlantBoller",
+                column: "bollerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlantBoller_plantId",
+                table: "PlantBoller",
+                column: "plantId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Boller");
-
             migrationBuilder.DropTable(
                 name: "Day");
 
@@ -141,7 +165,13 @@ namespace oopkr.Migrations
                 name: "Month");
 
             migrationBuilder.DropTable(
+                name: "PlantBoller");
+
+            migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "Boller");
 
             migrationBuilder.DropTable(
                 name: "Plant");
