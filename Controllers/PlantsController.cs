@@ -8,7 +8,7 @@ using ViewModels.Plants;
 using Microsoft.AspNetCore.Mvc;
 
 [Route("plants")]
-public class PlantsController : Controller
+public class PlantsController : BaseController
 {
     private readonly IPlants _iPlants;
     private readonly IBollers _iBollers;
@@ -77,7 +77,7 @@ public class PlantsController : Controller
         foreach(PlantBoller pb in request.plantBollers) {
             PlantBoller plantBoller = (PlantBoller) this._iPlantsBollers.SaveOne(pb);
 
-            status = plantBoller == null;
+            status = plantBoller != null;
             if(! status) break;
         }
 
@@ -90,5 +90,15 @@ public class PlantsController : Controller
     {
         this._iPlants.RemoveById(id);
         return RedirectToAction("index", "plants");
+    }
+
+    [HttpGet]
+    [Route("process")]
+    public ActionResult process()
+    {
+        this._log.Lg("Test");
+
+        bool status = false;
+        return StatusCode(200, JsonSerializer.Serialize(new SettingsResponseDto(status)));
     }
 }

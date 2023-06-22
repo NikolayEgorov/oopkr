@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -55,6 +56,22 @@ namespace oopkr.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Hour", x => x.id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Log",
+                columns: table => new
+                {
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    message = table.Column<string>(type: "text", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    date = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Log", x => x.id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -160,6 +177,9 @@ namespace oopkr.Migrations
 
             migrationBuilder.DropTable(
                 name: "Hour");
+
+            migrationBuilder.DropTable(
+                name: "Log");
 
             migrationBuilder.DropTable(
                 name: "Month");

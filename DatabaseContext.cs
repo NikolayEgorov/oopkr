@@ -5,6 +5,7 @@ public class DatabaseContext : DbContext
 {
     public DatabaseContext(DbContextOptions<DatabaseContext> options): base(options) {}
 
+    public DbSet<Log> Log { get; set; }
     public DbSet<User> User { get; set; }
     public DbSet<Boller> Boller { get; set; }
     public DbSet<Plant> Plant { get; set; }
