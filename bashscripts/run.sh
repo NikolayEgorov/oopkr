@@ -18,9 +18,9 @@ echo "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 # cd $PROJECT_FULL_PATH
 
 dotnet tool install --global dotnet-ef
-dotnet add package BCrypt.Net-Next --version 4.0.3
+# dotnet add package BCrypt.Net-Next --version 4.0.3
 
-dotnet add package Microsoft.AspNetCore.Authentication --version 2.2.0
+# dotnet add package Microsoft.AspNetCore.Authentication --version 2.2.0
 
 dotnet new tool-manifest --force
 dotnet tool install --local dotnet-ef --version 7.0.5
