@@ -4,7 +4,10 @@ using Models;
 using Interfaces;
 using ViewModels.Bollers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 
+[Authorize]
 [Route("bollers")]
 public class BollersController : Controller
 {

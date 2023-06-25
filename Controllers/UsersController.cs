@@ -5,7 +5,10 @@ using Models;
 using Interfaces;
 using ViewModels.Users;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 
+[Authorize]
 [Route("users")]
 public class UsersController : Controller
 {

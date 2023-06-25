@@ -28,47 +28,91 @@
 
 <!-- Widgets -->
 <div class="row">
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-sm-6" data-type="hour-data">
+        <div class="counter-box text-center white">
+            <div class="text font-17 m-b-5">Вироблено теплової енергії за годину</div>
+            <h3 class="m-b-10">@Model.hourGenerate
+                <i class="material-icons col-green">trending_up</i>
+            </h3>
+            <div class="icon">
+                <span class="chart chart-line" data-type="power"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6" data-type="hour-data">
+        <div class="counter-box text-center white">
+            <div class="text font-17 m-b-5">Спожито газу за годину</div>
+            <h3 class="m-b-10">@Model.hourConsumption
+                <i class="material-icons col-green">trending_up</i>
+            </h3>
+            <div class="icon">
+                <span class="chart chart-line" data-type="gas"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6" data-type="day-data">
+        <div class="counter-box text-center white">
+            <div class="text font-17 m-b-5">Вироблено теплової енергії за день</div>
+            <h3 class="m-b-10">@Model.dayGenerate
+                <i class="material-icons col-green">trending_up</i>
+            </h3>
+            <div class="icon">
+                <span class="chart chart-line" data-type="power"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6" data-type="day-data">
+        <div class="counter-box text-center white">
+            <div class="text font-17 m-b-5">Спожито газу за день</div>
+            <h3 class="m-b-10">@Model.dayConsumption
+                <i class="material-icons col-green">trending_up</i>
+            </h3>
+            <div class="icon">
+                <span class="chart chart-line" data-type="gas"></span>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-sm-6" data-type="month-data">
         <div class="counter-box text-center white">
             <div class="text font-17 m-b-5">Вироблено теплової енергії за місяць</div>
             <h3 class="m-b-10">@Model.monthGenerate
                 <i class="material-icons col-green">trending_up</i>
             </h3>
             <div class="icon">
-                <div class="chart chart-bar"></div>
+                <span class="chart chart-line" data-type="power"></span>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-sm-6" data-type="month-data">
         <div class="counter-box text-center white">
             <div class="text font-17 m-b-5">Спожито газу за місяць</div>
             <h3 class="m-b-10">@Model.monthConsumption
-                <i class="material-icons col-red">trending_down</i>
+                <i class="material-icons col-green">trending_up</i>
             </h3>
             <div class="icon">
-                <span class="chart chart-line"></span>
+                <span class="chart chart-line" data-type="gas"></span>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-sm-6" data-type="all-data">
         <div class="counter-box text-center white">
             <div class="text font-17 m-b-5">Вироблено всього теплової енергії</div>
             <h3 class="m-b-10">@Model.allGenerate
                 <i class="material-icons col-green">trending_up</i>
             </h3>
             <div class="icon">
-                <div class="chart chart-pie"></div>
+                <span class="chart chart-line" data-type="power"></span>
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-sm-6">
+    <div class="col-lg-3 col-sm-6" data-type="all-data">
         <div class="counter-box text-center white">
             <div class="text font-17 m-b-5">Всого спожито газу</div>
             <h3 class="m-b-10">@Model.allConsumption
-                <i class="material-icons col-red">trending_down</i>
+                <i class="material-icons col-green">trending_up</i>
             </h3>
             <div class="icon">
-                <div class="chart" id="liveChart">Loading..</div>
+                <span class="chart chart-line" data-type="gas"></span>
             </div>
         </div>
     </div>
@@ -94,37 +138,15 @@
                         </div>
                     </div>
                     <!-- Canvas for Chart.js -->
-                    <canvas id="chartReport1"></canvas>
+                    <canvas data-type="chart-report-1-day"></canvas>
                     <!-- Custom Axis -->
                     <div class="axisData">
-                        <div class="tick">
-                            MON <span class="value productValue">24</span> <span
-                                class="value serviceValue">20</span>
-                        </div>
-                        <div class="tick">
-                            TUE <span class="value productValue">18</span> <span
-                                class="value serviceValue">22</span>
-                        </div>
-                        <div class="tick">
-                            WED <span class="value productValue">16</span> <span
-                                class="value serviceValue">30</span>
-                        </div>
-                        <div class="tick">
-                            THU <span class="value productValue">18</span> <span
-                                class="value serviceValue">22</span>
-                        </div>
-                        <div class="tick">
-                            FRI <span class="value productValue">24</span> <span
-                                class="value serviceValue">18</span>
-                        </div>
-                        <div class="tick">
-                            SAT <span class="value productValue">36</span> <span
-                                class="value serviceValue">22</span>
-                        </div>
-                        <div class="tick">
-                            SUN <span class="value productValue">28</span> <span
-                                class="value serviceValue">30</span>
-                        </div>
+                        @foreach (Hour hour in Model.hours) {
+                            <div class="tick">
+                                @hour.hour <span class="value productValue">@hour.power</span> <span
+                                    class="value serviceValue">@hour.gas</span>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -147,7 +169,7 @@
                         </div>
                     </div>
                     <!-- Canvas for Chart.js -->
-                    <canvas id="chartReport2"></canvas>
+                    <canvas data-type="chart-report-2-day"></canvas>
                 </div>
             </div>
         </div>
@@ -174,36 +196,16 @@
                         </div>
                     </div>
                     <!-- Canvas for Chart.js -->
-                    <canvas id="chartReport1"></canvas>
+                    <canvas data-type="chart-report-1-month"></canvas>
                     <!-- Custom Axis -->
                     <div class="axisData">
-                        <div class="tick">
-                            MON <span class="value productValue">24</span> <span
-                                class="value serviceValue">20</span>
-                        </div>
-                        <div class="tick">
-                            TUE <span class="value productValue">18</span> <span
-                                class="value serviceValue">22</span>
-                        </div>
-                        <div class="tick">
-                            WED <span class="value productValue">16</span> <span
-                                class="value serviceValue">30</span>
-                        </div>
-                        <div class="tick">
-                            THU <span class="value productValue">18</span> <span
-                                class="value serviceValue">22</span>
-                        </div>
-                        <div class="tick">
-                            FRI <span class="value productValue">24</span> <span
-                                class="value serviceValue">18</span>
-                        </div>
-                        <div class="tick">
-                            SAT <span class="value productValue">36</span> <span
-                                class="value serviceValue">22</span>
-                        </div>
-                        <div class="tick">
-                            SUN <span class="value productValue">28</span> <span
-                                class="value serviceValue">30</span>
+                        <div class="axisData">
+                            @foreach (Day day in Model.days) {
+                                <div class="tick">
+                                    @day.date.Day <span class="value productValue">@day.power</span> <span
+                                        class="value serviceValue">@day.gas</span>
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -227,7 +229,7 @@
                         </div>
                     </div>
                     <!-- Canvas for Chart.js -->
-                    <canvas id="chartReport2"></canvas>
+                    <canvas data-type="chart-report-2-month"></canvas>
                 </div>
             </div>
         </div>
@@ -270,47 +272,30 @@
                                 <th>#</th>
                                 <th>Назва</th>
                                 <th>Адреса</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th>Макс. вироб. потужність</th>
+                                <th>Макс. спож. потужність</th>
+                                <th>Дії</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                @* <td class="table-img">
-                                    <img src="assets/images/user/user1.jpg" alt="">
-                                </td> *@
-                                <td>1</td>
-                                <td>Київ-1</td>
-                                <td>Троєщина</td>
-                                <td>
-                                    <span class="label bg-green shadow-style">Active</span>
-                                </td>
-                                <td>
-                                    <button class="btn tblActnBtn">
-                                        <i class="material-icons">mode_edit</i>
-                                    </button>
-                                    <button class="btn tblActnBtn">
-                                        <i class="material-icons">delete</i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Київ-2</td>
-                                <td>Дарниця</td>
-                                <td>
-                                    <span class="label bg-red shadow-style">Inactive</span>
-                                </td>
-                                <td>
-                                    <button class="btn tblActnBtn">
-                                        <i class="material-icons">mode_edit</i>
-                                    </button>
-                                    <button class="btn tblActnBtn">
-                                        <i class="material-icons">delete</i>
-                                    </button>
-                                </td>
-                            </tr>
+                            @foreach(Plant plant in Model.plants){
+                                <tr>
+                                    <td>@plant.id</td>
+                                    <td>@plant.name</td>
+                                    <td>@plant.address</td>
+                                    <td>@plant.maxGeneratePower</td>
+                                    <td>@plant.maxGeneratePower</td>
+                                    <td>
+                                        <button class="btn tblActnBtn">
+                                            <i class="material-icons">mode_edit</i>
+                                        </button>
+                                        <button class="btn tblActnBtn" onclick="location.href = '/plants/settings/@plant.id'">
+                                            <i class="material-icons">settings</i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
@@ -319,233 +304,321 @@
     </div>
     <!-- #END# Task Info -->
 </div>
-<div class="row clearfix">
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        <div class="box-part text-center">
-            <i class="fab fa-twitter fa-3x col-blue"></i>
-            <div class="title p-t-15">
-                <h3>Twitter</h3>
-            </div>
-            <div class="text p-b-10">
-                <span>Lorem ipsum dolor sit amet, id quo eruditi
-                    eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui
-                    ad.</span>
-            </div>
-            <a href="#">Learn More</a>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        <div class="box-part text-center">
-            <i class="fab fa-instagram fa-3x col-red"></i>
-            <div class="title p-t-15">
-                <h3>Instagram</h3>
-            </div>
-            <div class="text p-b-10">
-                <span>Lorem ipsum dolor sit amet, id quo eruditi
-                    eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui
-                    ad.</span>
-            </div>
-            <a href="#">Learn More</a>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        <div class="box-part text-center">
-            <i class="fab fa-facebook-f fa-3x col-blue"></i>
-            <div class="title p-t-15">
-                <h3>Facebook</h3>
-            </div>
-            <div class="text p-b-10">
-                <span>Lorem ipsum dolor sit amet, id quo eruditi
-                    eloquentiam. Assum decore te sed. Elitr scripta ocurreret qui
-                    ad.</span>
-            </div>
-            <a href="#">Learn More</a>
-        </div>
-    </div>
-</div>
-<div class="row clearfix">
-    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-        <div class="card">
-            <div class="header">
-                <h2>
-                    <strong>Earning</strong> Source</h2>
-                <ul class="header-dropdown m-r--5">
-                    <li class="dropdown">
-                        <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
-                            role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="material-icons">more_vert</i>
-                        </a>
-                        <ul class="dropdown-menu pull-right">
-                            <li>
-                                <a href="#" onClick="return false;">Action</a>
-                            </li>
-                            <li>
-                                <a href="#" onClick="return false;">Another action</a>
-                            </li>
-                            <li>
-                                <a href="#" onClick="return false;">Something else here</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="body">
-                <div class="totalEarning">
-                    <h2>$90,808</h2>
-                </div>
-                <div class="p-t-10">
-                    <span class="pull-left progress-label">envato.com</span>
-                    <span class="pull-right progress-percent label label-info m-b-5">17%</span>
-                </div>
-                <div class="earningProgress">
-                    <div class="progress shadow-style">
-                        <div class="progress-bar l-bg-green width-per-17" role="progressbar"
-                            aria-valuenow="17" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="p-t-10">
-                    <span class="pull-left progress-label">google.com</span>
-                    <span class="pull-right progress-percent label label-danger m-b-5">27%</span>
-                </div>
-                <div class="earningProgress">
-                    <div class="progress shadow-style">
-                        <div class="progress-bar l-bg-purple width-per-27" role="progressbar"
-                            aria-valuenow="27" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="p-t-10">
-                    <span class="pull-left progress-label">yahoo.com</span>
-                    <span class="pull-right progress-percent label label-primary m-b-5">25%</span>
-                </div>
-                <div class="earningProgress">
-                    <div class="progress shadow-style">
-                        <div class="progress-bar l-bg-orange width-per-25" role="progressbar"
-                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="p-t-10">
-                    <span class="pull-left progress-label">store</span>
-                    <span class="pull-right progress-percent label label-success m-b-5">18%</span>
-                </div>
-                <div class="earningProgress">
-                    <div class="progress shadow-style">
-                        <div class="progress-bar l-bg-cyan width-per-18" role="progressbar"
-                            aria-valuenow="18" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="p-t-10">
-                    <span class="pull-left progress-label">Others</span>
-                    <span class="pull-right progress-percent label label-warning m-b-5">13%</span>
-                </div>
-                <div class="earningProgress">
-                    <div class="progress shadow-style">
-                        <div class="progress-bar l-bg-red width-per-13" role="progressbar"
-                            aria-valuenow="13" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Customer Review -->
-    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
-        <div class="card">
-            <div class="header">
-                <h2>
-                    <strong>Customer</strong> Review</h2>
-                <ul class="header-dropdown m-r--5">
-                    <li class="dropdown">
-                        <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown"
-                            role="button" aria-haspopup="true" aria-expanded="false">
-                            <i class="material-icons">more_vert</i>
-                        </a>
-                        <ul class="dropdown-menu pull-right">
-                            <li>
-                                <a href="#" onClick="return false;">Action</a>
-                            </li>
-                            <li>
-                                <a href="#" onClick="return false;">Another action</a>
-                            </li>
-                            <li>
-                                <a href="#" onClick="return false;">Something else here</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-            <div class="body">
-                <div class="review-block">
-                    <div class="row">
-                        <div class="review-img">
-                            <img src="assets/images/user/user1.jpg" alt="">
-                        </div>
-                        <div class="col">
-                            <h6 class="m-b-15">Alis Smith
-                                <span class="float-right m-r-10 text-muted"> a week ago
-                                </span>
-                            </h6>
-                            <i class="material-icons col-green">star</i>
-                            <i class="material-icons col-green">star</i>
-                            <i class="material-icons col-green">star</i>
-                            <i class="material-icons col-green">star_half</i>
-                            <i class="material-icons col-green">star_border</i>
-                            <p class="m-t-15 m-b-15">Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Etiam vel rutrum ex, at
-                                ornare mi. In quis scelerisque dui, eget rhoncus orci. Fusce et sodales
-                                ipsum.
-                                Nam id nunc euismod, aliquet arcu quis, mattis nisi.
-                            </p>
-                            <a href="#!">
-                                <i class="material-icons m-r-10">thumb_up</i>
-                            </a>
-                            <a href="#!">
-                                <i class="material-icons m-r-10 col-red">thumb_down</i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="review-img">
-                            <img src="assets/images/user/user2.jpg" alt="">
-                        </div>
-                        <div class="col">
-                            <h6 class="m-b-15">John Dio
-                                <span class="float-right m-r-10 text-muted"> a week ago
-                                </span>
-                            </h6>
-                            <i class="material-icons col-red">star</i>
-                            <i class="material-icons col-red">star_half</i>
-                            <i class="material-icons col-red">star_border</i>
-                            <i class="material-icons col-red">star_border</i>
-                            <i class="material-icons col-red">star_border</i>
-                            <p class="m-t-15 m-b-15">Nam quis ligula est. Nunc sed risus non
-                                turpis tristique tempor. Ut sollicitudin
-                                faucibus magna nec gravida. Suspendisse ullamcorper justo vel porta
-                                imperdiet.
-                                Nunc nec ipsum vel augue placerat faucibus. </p>
-                            <a href="#!">
-                                <i class="material-icons m-r-10">thumb_up</i>
-                            </a>
-                            <a href="#!">
-                                <i class="material-icons m-r-10 col-red">thumb_down</i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="text-center  m-b-5">
-                        <a href="#!" class="b-b-primary text-primary">View all Customer Reviews</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- #END# Customer Review -->
-</div>
 
 @section PluginsScripts {
     <script src="/assets/js/chart.min.js"></script>
 }
 
 @section CustomScripts {
-    <script src="/assets/js/pages/index.js"></script>
     <script src="/assets/js/pages/charts/jquery-knob.js"></script>
     <script src="/assets/js/pages/sparkline/sparkline-data.js"></script>
     <script src="/assets/js/pages/medias/carousel.js"></script>
+
+    <script>
+        function initChartReport1(id, labels, power, gas) {
+            let selector = '[data-type="chart-report-1-' + id + '"]',
+                canvas = document.querySelector(selector);
+            
+            var multiply = {
+                beforeDatasetsDraw: function (chart, options, el) {
+                    chart.ctx.globalCompositeOperation = 'multiply';
+                },
+                afterDatasetsDraw: function (chart, options) {
+                    chart.ctx.globalCompositeOperation = 'source-over';
+                },
+            };
+
+            // Gradient color - this week
+            var gradientThisWeek = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+            gradientThisWeek.addColorStop(0, '#5555FF');
+            gradientThisWeek.addColorStop(1, '#9787FF');
+
+            // Gradient color - previous week
+            var gradientPrevWeek = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+            gradientPrevWeek.addColorStop(0, '#FF55B8');
+            gradientPrevWeek.addColorStop(1, '#FF8787');
+
+            var config = {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: 'This week',
+                            data: gas,
+                            backgroundColor: gradientThisWeek,
+                            borderColor: 'transparent',
+                            pointBackgroundColor: '#FFFFFF',
+                            pointBorderColor: '#FFFFFF',
+                            lineTension: 0.40,
+                        },
+                        {
+                            label: 'Previous week',
+                            data: power,
+                            backgroundColor: gradientPrevWeek,
+                            borderColor: 'transparent',
+                            pointBackgroundColor: '#FFFFFF',
+                            pointBorderColor: '#FFFFFF',
+                            lineTension: 0.40,
+                        }
+                    ]
+                },
+                options: {
+                    elements: {
+                        point: {
+                            radius: 0,
+                            hitRadius: 5,
+                            hoverRadius: 5
+                        }
+                    },
+                    legend: {
+                        display: false,
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: false,
+                        }],
+                        yAxes: [{
+                            display: false,
+                            ticks: {
+                                beginAtZero: true,
+                            },
+                        }]
+                    }
+                },
+                plugins: [multiply],
+            };
+
+            window.chart = new Chart(canvas, config);
+        }
+        function initChartReport2(id, labels, power, gas) {
+            let selector = '[data-type="chart-report-2-' + id + '"]',
+                canvas = document.querySelector(selector);
+
+            var gradientBlue = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+            gradientBlue.addColorStop(0, 'rgba(85, 85, 255, 0.9)');
+            gradientBlue.addColorStop(1, 'rgba(151, 135, 255, 0.8)');
+
+            var gradientHoverBlue = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+            gradientHoverBlue.addColorStop(0, 'rgba(65, 65, 255, 1)');
+            gradientHoverBlue.addColorStop(1, 'rgba(131, 125, 255, 1)');
+
+            var gradientRed = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+            gradientRed.addColorStop(0, 'rgba(255, 85, 184, 0.9)');
+            gradientRed.addColorStop(1, 'rgba(255, 135, 135, 0.8)');
+
+            var gradientHoverRed = canvas.getContext('2d').createLinearGradient(0, 0, 0, 150);
+            gradientHoverRed.addColorStop(0, 'rgba(255, 65, 164, 1)');
+            gradientHoverRed.addColorStop(1, 'rgba(255, 115, 115, 1)');
+
+            var redArea = null;
+            var blueArea = null;
+
+            var shadowed = {
+                beforeDatasetsDraw: function (chart, options) {
+                    chart.ctx.shadowColor = 'rgba(0, 0, 0, 0.25)';
+                    chart.ctx.shadowBlur = 40;
+                },
+                afterDatasetsDraw: function (chart, options) {
+                    chart.ctx.shadowColor = 'rgba(0, 0, 0, 0)';
+                    chart.ctx.shadowBlur = 0;
+                }
+            };
+
+
+            window.chart = new Chart(document.querySelector(selector), {
+                type: "radar",
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Power",
+                        data: power,
+                        fill: true,
+                        backgroundColor: gradientRed,
+                        borderColor: 'transparent',
+                        pointBackgroundColor: "transparent",
+                        pointBorderColor: "transparent",
+                        pointHoverBackgroundColor: "transparent",
+                        pointHoverBorderColor: "transparent",
+                        pointHitRadius: 50,
+                    }, {
+                        label: "Gas",
+                        data: gas,
+                        fill: true,
+                        backgroundColor: gradientBlue,
+                        borderColor: "transparent",
+                        pointBackgroundColor: "transparent",
+                        pointBorderColor: "transparent",
+                        pointHoverBackgroundColor: "transparent",
+                        pointHoverBorderColor: "transparent",
+                        pointHitRadius: 50,
+                    }]
+                },
+                options: {
+                    legend: {
+                        display: false,
+                    },
+                    gridLines: {
+                        display: false
+                    },
+                    scale: {
+                        ticks: {
+                            maxTicksLimit: 1,
+                            display: false,
+                        }
+                    }
+                },
+                plugins: [shadowed]
+            });
+
+        }
+        function initChartReports(id, labels, power, gas) {
+            initChartReport1(id, labels, power, gas);
+            initChartReport2(id, labels, power, gas);
+        }
+
+        const hourPower = @Model.hourGenerate,
+            hourGas = @Model.hourConsumption;
+
+        $('[data-type="hour-data"] [data-type="power"].chart.chart-line').sparkline([0, hourPower], {
+            type: 'line',
+            width: '60px',
+            height: '45px',
+            lineColor: '#65BAF2',
+            lineWidth: 2,
+            fillColor: 'rgba(0,0,0,0)',
+            spotColor: '#F39517',
+            maxSpotColor: '#F39517',
+            minSpotColor: '#F39517',
+            spotRadius: 3,
+            highlightSpotColor: '#F44586'
+        });
+
+        $('[data-type="hour-data"] [data-type="gas"].chart.chart-line').sparkline([0, hourGas], {
+            type: 'line',
+            width: '60px',
+            height: '45px',
+            lineColor: '#65BAF2',
+            lineWidth: 2,
+            fillColor: 'rgba(0,0,0,0)',
+            spotColor: '#F39517',
+            maxSpotColor: '#F39517',
+            minSpotColor: '#F39517',
+            spotRadius: 3,
+            highlightSpotColor: '#F44586'
+        });
+
+        const dayPower = @Model.dayGenerate,
+            dayGas = @Model.dayConsumption;
+
+        $('[data-type="day-data"] [data-type="power"].chart.chart-line').sparkline([0, dayPower], {
+            type: 'line',
+            width: '60px',
+            height: '45px',
+            lineColor: '#65BAF2',
+            lineWidth: 2,
+            fillColor: 'rgba(0,0,0,0)',
+            spotColor: '#F39517',
+            maxSpotColor: '#F39517',
+            minSpotColor: '#F39517',
+            spotRadius: 3,
+            highlightSpotColor: '#F44586'
+        });
+
+        $('[data-type="day-data"] [data-type="gas"].chart.chart-line').sparkline([0, dayGas], {
+            type: 'line',
+            width: '60px',
+            height: '45px',
+            lineColor: '#65BAF2',
+            lineWidth: 2,
+            fillColor: 'rgba(0,0,0,0)',
+            spotColor: '#F39517',
+            maxSpotColor: '#F39517',
+            minSpotColor: '#F39517',
+            spotRadius: 3,
+            highlightSpotColor: '#F44586'
+        });
+
+        const monthPower = @Model.monthGenerate,
+            monthGas = @Model.monthConsumption;
+
+        $('[data-type="month-data"] [data-type="power"].chart.chart-line').sparkline([0, monthPower], {
+            type: 'line',
+            width: '60px',
+            height: '45px',
+            lineColor: '#65BAF2',
+            lineWidth: 2,
+            fillColor: 'rgba(0,0,0,0)',
+            spotColor: '#F39517',
+            maxSpotColor: '#F39517',
+            minSpotColor: '#F39517',
+            spotRadius: 3,
+            highlightSpotColor: '#F44586'
+        });
+
+        $('[data-type="month-data"] [data-type="gas"].chart.chart-line').sparkline([0, monthGas], {
+            type: 'line',
+            width: '60px',
+            height: '45px',
+            lineColor: '#65BAF2',
+            lineWidth: 2,
+            fillColor: 'rgba(0,0,0,0)',
+            spotColor: '#F39517',
+            maxSpotColor: '#F39517',
+            minSpotColor: '#F39517',
+            spotRadius: 3,
+            highlightSpotColor: '#F44586'
+        });
+
+        const allPower = @Model.allGenerate,
+            allGas = @Model.allConsumption;
+
+        $('[data-type="all-data"] [data-type="power"].chart.chart-line').sparkline([0, allPower], {
+            type: 'line',
+            width: '60px',
+            height: '45px',
+            lineColor: '#65BAF2',
+            lineWidth: 2,
+            fillColor: 'rgba(0,0,0,0)',
+            spotColor: '#F39517',
+            maxSpotColor: '#F39517',
+            minSpotColor: '#F39517',
+            spotRadius: 3,
+            highlightSpotColor: '#F44586'
+        });
+
+        $('[data-type="all-data"] [data-type="gas"].chart.chart-line').sparkline([0, allGas], {
+            type: 'line',
+            width: '60px',
+            height: '45px',
+            lineColor: '#65BAF2',
+            lineWidth: 2,
+            fillColor: 'rgba(0,0,0,0)',
+            spotColor: '#F39517',
+            maxSpotColor: '#F39517',
+            minSpotColor: '#F39517',
+            spotRadius: 3,
+            highlightSpotColor: '#F44586'
+        });
+
+        let hours = JSON.parse('@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.hours))');
+        var labels = [], power = [], gas = [];
+        
+        hours.map((h) => {
+            labels.push(h.hour);
+            power.push(h.power);
+            gas.push(h.gas);
+        });
+        initChartReports("day", labels, power, gas);
+
+        let days = JSON.parse('@Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.days))');
+        labels = [], power = [], gas = [];
+        
+        days.map((d) => {
+            labels.push(d.date.split('T')[0].split('-')[2]);
+            power.push(d.power);
+            gas.push(d.gas);
+        });
+        initChartReports("month", labels, power, gas);
+    </script>
 }

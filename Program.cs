@@ -22,6 +22,8 @@ builder.Services.AddDbContext<DatabaseContext>(options =>
     options.UseMySql(connection, new MySqlServerVersion(new Version(10, 11, 3))));
 
 builder.Services.AddTransient<ILog, LogRepository>();
+builder.Services.AddTransient<IReport, ReportRepository>();
+
 builder.Services.AddTransient<IUsers, UserRepository>();
 builder.Services.AddTransient<IBollers, BollerRepository>();
 builder.Services.AddTransient<IPlants, PlantRepository>();

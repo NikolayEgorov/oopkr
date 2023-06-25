@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace oopkr.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20230622200548_InitialCreate")]
+    [Migration("20230623140548_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -51,6 +51,18 @@ namespace oopkr.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime");
+
+                    b.Property<double>("gas")
+                        .HasColumnType("double");
+
+                    b.Property<int>("plantId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("power")
+                        .HasColumnType("double");
+
                     b.HasKey("id");
 
                     b.ToTable("Day");
@@ -61,6 +73,21 @@ namespace oopkr.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime");
+
+                    b.Property<double>("gas")
+                        .HasColumnType("double");
+
+                    b.Property<int>("hour")
+                        .HasColumnType("int");
+
+                    b.Property<int>("plantId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("power")
+                        .HasColumnType("double");
 
                     b.HasKey("id");
 
@@ -74,11 +101,15 @@ namespace oopkr.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("date")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime");
 
                     b.Property<string>("message")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("type")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.HasKey("id");
 
@@ -90,6 +121,18 @@ namespace oopkr.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("date")
+                        .HasColumnType("datetime");
+
+                    b.Property<double>("gas")
+                        .HasColumnType("double");
+
+                    b.Property<int>("plantId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("power")
+                        .HasColumnType("double");
 
                     b.HasKey("id");
 

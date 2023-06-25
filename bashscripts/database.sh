@@ -24,6 +24,7 @@ then
 
     # dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 7.0.5
     # dotnet add package Pomelo.EntityFrameworkCore.MySql
+    # dotnet add package MySqlConnector --version 2.2.6
     # dotnet add package Microsoft.EntityFrameworkCore.Sqlite --version 7.0.5
     # dotnet add package Microsoft.EntityFrameworkCore.Design --version 7.0.5
     # dotnet add package Microsoft.EntityFrameworkCore.Tools --version 7.0.5

@@ -12,10 +12,12 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
+    private readonly DatabaseContext _db;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(ILogger<HomeController> logger, DatabaseContext db)
     {
         _logger = logger;
+        this._db = db;
     }
 
     public IActionResult Index()
@@ -26,7 +28,7 @@ public class HomeController : Controller
             return Redirect("/account/login");
         }
 
-        IndexViewModels viewModels = new IndexViewModels();
+        IndexViewModels viewModels = new IndexViewModels(this._db);
         return View(viewModels);
     }
 

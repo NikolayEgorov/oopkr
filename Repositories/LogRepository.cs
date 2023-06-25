@@ -25,6 +25,10 @@ public class LogRepository: ILog
     public Base SaveOne(Base model)
     {
         Log log = (Log) model;
+
+        this.dbContext.Add(log);
+        this.dbContext.SaveChanges();
+
         return log;
     }
 
@@ -33,14 +37,13 @@ public class LogRepository: ILog
         return false;
     }
 
-    public void Lg(string message)
+    public void Lg(string message, Log.Type type = Log.Type.log)
     {
         Log log = new Log();
-        
+
+        log.setType(type);
         log.message = message;
-        log.date = DateTime.Now;
         
-        this.dbContext.Add(log);
-        this.dbContext.SaveChanges();
+        this.SaveOne(log);
     }
 }

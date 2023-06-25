@@ -51,7 +51,7 @@ public class AccountController : Controller
     public async Task<IActionResult> Login(UserDto request)
     {
         User user = this._iUsers.AuthenticateUser(request);
-        if(user != null) {
+        if(user != null && user.status == 1) {
             List<Claim> claims = new List<Claim> {
                 new Claim(ClaimTypes.NameIdentifier, request.email)
                 // new Claim("OtherProperties", "Example Role")

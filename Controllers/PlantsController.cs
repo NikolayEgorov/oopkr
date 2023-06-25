@@ -6,7 +6,10 @@ using Dto.Plants;
 using System.Text.Json;
 using ViewModels.Plants;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication;
 
+[Authorize]
 [Route("plants")]
 public class PlantsController : BaseController
 {
@@ -90,15 +93,5 @@ public class PlantsController : BaseController
     {
         this._iPlants.RemoveById(id);
         return RedirectToAction("index", "plants");
-    }
-
-    [HttpGet]
-    [Route("process")]
-    public ActionResult process()
-    {
-        this._log.Lg("Test");
-
-        bool status = false;
-        return StatusCode(200, JsonSerializer.Serialize(new SettingsResponseDto(status)));
     }
 }

@@ -1,5 +1,7 @@
 namespace Models;
 
+using Repositories;
+
 public class Plant : Base
 {
     public string name { get; set; } = String.Empty;
@@ -13,4 +15,29 @@ public class Plant : Base
     public List<Boller> bollers { get; set; } = new List<Boller>();
 
     public Plant() {}
+    public Plant(DatabaseContext databaseContext): base(databaseContext) {}
+
+    public void SumCalculate(DateTime date)
+    {
+        int h = Int32.Parse(date.ToString("HH"));
+        date = new DateTime(date.Year, date.Month, date.Day, 0,0,0);
+
+        (new Hour(this.GetDbContext())).AddPlantReport(h, this.id, date);
+        (new Day(this.GetDbContext())).AddPlantReport(this.id, date);
+        (new Month(this.GetDbContext())).AddPlantReport(this.id, date);
+    }
+
+    public static bool SumsCalculate(DatabaseContext db)
+    {
+        Plant contextPlant = new Plant(db);
+        bool status = true; DateTime date = DateTime.Now;
+
+        try {
+            foreach(Plant plant in contextPlant.GetDbContext().Plant.ToList()) {
+                plant.SumCalculate(date);
+            }
+        } catch(Exception e) { status = false; }
+
+        return status;
+    }
 }
