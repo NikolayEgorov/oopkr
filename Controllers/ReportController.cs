@@ -28,7 +28,7 @@ public class ReportController: BaseController
     [Route("plants/set-random-settings")]
     public ActionResult randomSettings()
     {
-        Plant pContext = new Plant();
+        Plant pContext = new Plant(this._dbContext);
         PlantBollerRepository pbRepository = new PlantBollerRepository(pContext.GetDbContext());
 
 
