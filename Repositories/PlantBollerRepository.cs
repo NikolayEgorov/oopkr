@@ -22,7 +22,6 @@ public class PlantBollerRepository: IPlantsBollers
         PlantBoller plantBoller = (PlantBoller) model;
 
         if(plantBoller.id > 0) {
-            Console.WriteLine(plantBoller.id);
             PlantBoller dbPlantBoller = (PlantBoller) this.GetById(plantBoller.id);
             
             dbPlantBoller.currentPower = plantBoller.currentPower;
