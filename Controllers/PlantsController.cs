@@ -94,18 +94,4 @@ public class PlantsController : BaseController
         this._iPlants.RemoveById(id);
         return RedirectToAction("index", "plants");
     }
-
-    [HttpGet]
-    [Route("random-settings")]
-    public ActionResult randomSettings()
-    {
-        foreach(Plant plant in this._iPlants.All) {
-            foreach (PlantBoller pb in plant.plantBollers) {
-                pb.currentPower = (new Random()).Next(101);
-                this._iPlantsBollers.SaveOne(pb);
-            }
-        }
-
-        return StatusCode(200, JsonSerializer.Serialize(new SettingsResponseDto(true)));
-    }
 }
