@@ -20,24 +20,12 @@ public class ReportController: BaseController
     [Route("add/{hour:int}")]
     public ActionResult add(int hour)
     {
-        return StatusCode(200, JsonSerializer.Serialize(
-            new SettingsResponseDto(Plant.SumsCalculate(hour, this._dbContext))));
-    }
-
-    [HttpGet]
-    [Route("plants/set-random-settings")]
-    public ActionResult randomSettings()
-    {
-        PlantRepository pRepository = new PlantRepository(this._dbContext);
-        PlantBollerRepository pbRepository = new PlantBollerRepository(this._dbContext);
-
-        foreach(Plant plant in pRepository.All) {
-            foreach (PlantBoller pb in plant.plantBollers) {
-                pb.currentPower = (new Random()).Next(101);
-                pbRepository.SaveOne(pb);
-            }
+        Plant contextPlant = new Plant(this._dbContext);
+        if(Int32.Parse(DateTime.Now.ToString("HH")) == 0) {
+            contextPlant.SetRandomSettings();
         }
 
-        return StatusCode(200, JsonSerializer.Serialize(new SettingsResponseDto(true)));
+        return StatusCode(200, JsonSerializer.Serialize(
+            new SettingsResponseDto(contextPlant.SumsCalculate(hour))));
     }
 }

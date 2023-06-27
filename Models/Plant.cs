@@ -29,17 +29,29 @@ public class Plant : Base
         (new Month(this.GetDbContext())).AddPlantReport(this.id, date);
     }
 
-    public static bool SumsCalculate(int hour, DatabaseContext db)
+    public bool SumsCalculate(int hour)
     {
-        Plant contextPlant = new Plant(db);
         bool status = true; DateTime date = DateTime.Now;
 
         try {
-            foreach(Plant plant in contextPlant.GetDbContext().Plant.ToList()) {
+            foreach(Plant plant in this.GetDbContext().Plant.ToList()) {
                 plant.SumCalculate(hour, date);
             }
         } catch(Exception e) { status = false; }
 
         return status;
+    }
+
+    public void SetRandomSettings()
+    {
+        PlantRepository pRepository = new PlantRepository(this.GetDbContext());
+        PlantBollerRepository pbRepository = new PlantBollerRepository(this.GetDbContext());
+
+        foreach(Plant plant in pRepository.All) {
+            foreach (PlantBoller pb in plant.plantBollers) {
+                pb.currentPower = (new Random()).Next(101);
+                pbRepository.SaveOne(pb);
+            }
+        }
     }
 }
