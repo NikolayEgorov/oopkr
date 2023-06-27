@@ -21,7 +21,8 @@ public class ReportController: BaseController
     public ActionResult add(int hour)
     {
         Plant contextPlant = new Plant(this._dbContext);
-        if(Int32.Parse(DateTime.Now.ToString("HH")) == 0) {
+        if(Int32.Parse(DateTime.Now.ToString("HH")) == 0
+            || Int32.Parse(DateTime.Now.ToString("HH")) == 12) {
             contextPlant.SetRandomSettings();
         }
 
