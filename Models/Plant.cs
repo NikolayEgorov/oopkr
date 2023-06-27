@@ -17,9 +17,11 @@ public class Plant : Base
     public Plant() {}
     public Plant(DatabaseContext databaseContext): base(databaseContext) {}
 
-    public void SumCalculate(DateTime date)
+    public void SumCalculate(int h, DateTime date)
     {
-        int h = Int32.Parse(date.ToString("HH"));
+        if(h == 0) {
+            h = Int32.Parse(date.ToString("HH"));
+        }
         date = new DateTime(date.Year, date.Month, date.Day, 0,0,0);
 
         (new Hour(this.GetDbContext())).AddPlantReport(h, this.id, date);
@@ -27,14 +29,14 @@ public class Plant : Base
         (new Month(this.GetDbContext())).AddPlantReport(this.id, date);
     }
 
-    public static bool SumsCalculate(DatabaseContext db)
+    public static bool SumsCalculate(int hour, DatabaseContext db)
     {
         Plant contextPlant = new Plant(db);
         bool status = true; DateTime date = DateTime.Now;
 
         try {
             foreach(Plant plant in contextPlant.GetDbContext().Plant.ToList()) {
-                plant.SumCalculate(date);
+                plant.SumCalculate(hour, date);
             }
         } catch(Exception e) { status = false; }
 

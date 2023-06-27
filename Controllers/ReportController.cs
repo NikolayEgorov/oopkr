@@ -17,11 +17,11 @@ public class ReportController: BaseController
         this._dbContext = databaseContext;
     }
 
-    [Route("add")]
-    public ActionResult add()
+    [Route("add/{hour:int}")]
+    public ActionResult add(int hour)
     {
         return StatusCode(200, JsonSerializer.Serialize(
-            new SettingsResponseDto(Plant.SumsCalculate(this._dbContext))));
+            new SettingsResponseDto(Plant.SumsCalculate(hour, this._dbContext))));
     }
 
     [HttpGet]
